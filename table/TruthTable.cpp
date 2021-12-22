@@ -1,8 +1,8 @@
 /*
  * TruthTable.cpp
  *
- *  Created on: 08.12.2021
- *      Author: Roman Kalkreuth
+ *  Created on: 09.12.2021
+ *  Author: Roman Kalkreuth
  */
 
 #include "TruthTable.h"
@@ -21,6 +21,21 @@ TruthTable::TruthTable(int p_inputs, int p_outputs) {
 	table = std::vector<std::vector<int> >(rows, std::vector<int>(cols, 0));
 
 	init(rows, cols, outputs, table);
+}
+
+TruthTable::TruthTable(int p_inputs, int p_outputs, std::string *p_input_names,
+		std::string *p_output_names) : TruthTable(p_inputs, p_outputs) {
+
+	inputNames = new std::string[inputs];
+	outputNames = new std::string[outputs];
+
+	for (int i = 0; i < inputs; i++) {
+		inputNames[i] = p_input_names[i];
+	}
+
+	for (int i = 0; i < outputs; i++) {
+		outputNames[i] = p_output_names[i];
+	}
 }
 
 /**
@@ -60,7 +75,8 @@ void TruthTable::init(int rows, int cols, int outputs,
 /**
  *
  */
-void TruthTable::init(int rows, int cols, std::vector<std::vector<int> > &table) {
+void TruthTable::init(int rows, int cols,
+		std::vector<std::vector<int> > &table) {
 	int n;
 	int x = 0;
 	for (int i = (cols - 1); i >= 0; i--) {
@@ -77,10 +93,23 @@ void TruthTable::init(int rows, int cols, std::vector<std::vector<int> > &table)
 /**
  *
  */
-void TruthTable::print() {
+void TruthTable::print(bool header) {
+	if (header) {
+
+		for (int i = 0; i < inputs; i++) {
+			std::cout << inputNames[i] << " ";
+		}
+
+		for (int i = 0; i < outputs; i++) {
+			std::cout << outputNames[i] << " ";
+		}
+
+		std::cout << std::endl;
+	}
+
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < cols; j++) {
-			std::cout << table[i][j];
+			std::cout << table[i][j] << "  ";
 		}
 		std::cout << std::endl;
 	}
