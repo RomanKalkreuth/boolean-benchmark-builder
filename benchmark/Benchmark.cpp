@@ -8,7 +8,6 @@
 #include "Benchmark.h"
 
 Benchmark::Benchmark() {
-
 	table = new TruthTable(inputs,outputs);
 
 }

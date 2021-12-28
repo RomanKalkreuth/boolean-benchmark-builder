@@ -10,6 +10,7 @@
 
 #include <stdexcept>
 #include <vector>
+#include <cmath>
 
 #include "Benchmark.h"
 #include "../function/Function.h"
@@ -17,14 +18,18 @@
 
 class ALU : public Benchmark{
 public:
-	ALU(std::vector<Function>* function_set);
+	ALU(std::vector<Function>* function_set, int p_bits);
 	virtual ~ALU();
 
 	std::vector<Function>* functions;
 
+	int bits;
+	int chunk;
 	int opcodes;
 	int opcodesBits;
-	int opcode = 0;
+
+	void build();
+
 };
 
 #endif /* BENCHMARK_ALU_H_ */

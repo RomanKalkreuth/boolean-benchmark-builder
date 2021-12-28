@@ -24,18 +24,32 @@ TruthTable::TruthTable(int p_inputs, int p_outputs) {
 }
 
 TruthTable::TruthTable(int p_inputs, int p_outputs, std::string *p_input_names,
-		std::string *p_output_names) : TruthTable(p_inputs, p_outputs) {
+		std::string *p_output_names) :
+		TruthTable(p_inputs, p_outputs) {
 
-	inputNames = new std::string[inputs];
-	outputNames = new std::string[outputs];
-
-	for (int i = 0; i < inputs; i++) {
-		inputNames[i] = p_input_names[i];
+	if (p_input_names != nullptr) {
+		this->inputNames = p_input_names;
+	} else {
+		throw std::invalid_argument("Function set is NULL!");
 	}
 
-	for (int i = 0; i < outputs; i++) {
-		outputNames[i] = p_output_names[i];
+	if (p_output_names != nullptr) {
+		this->outputNames = p_output_names;
+	} else {
+		throw std::invalid_argument("Function set is NULL!");
 	}
+
+	/*
+	 inputNames = new std::string[inputs];
+	 outputNames = new std::string[outputs];
+
+	 for (int i = 0; i < inputs; i++) {
+	 inputNames[i] = p_input_names[i];
+	 }
+
+	 for (int i = 0; i < outputs; i++) {
+	 outputNames[i] = p_output_names[i];
+	 }*/
 }
 
 /**
@@ -51,7 +65,7 @@ TruthTable::TruthTable(int p_bits) {
 }
 
 TruthTable::~TruthTable() {
-
+	//delete &table;
 }
 
 /**
@@ -113,5 +127,33 @@ void TruthTable::print(bool header) {
 		}
 		std::cout << std::endl;
 	}
+}
+
+int TruthTable::getCols() const {
+	return cols;
+}
+
+const std::string* TruthTable::getInputNames() const {
+	return inputNames;
+}
+
+const std::string* TruthTable::getOutputNames() const {
+	return outputNames;
+}
+
+int TruthTable::getInputs() const {
+	return inputs;
+}
+
+int TruthTable::getOutputs() const {
+	return outputs;
+}
+
+int TruthTable::getRows() const {
+	return rows;
+}
+
+const std::vector<std::vector<int> >& TruthTable::getTable() const {
+	return table;
 }
 
