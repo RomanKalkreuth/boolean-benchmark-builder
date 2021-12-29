@@ -18,10 +18,10 @@
 
 class ALU : public Benchmark{
 public:
-	ALU(std::vector<Function>* function_set, int p_bits);
+	ALU(std::vector<Function*>* p_functions, int p_bits);
 	virtual ~ALU();
 
-	std::vector<Function>* functions;
+	std::vector<Function*>* functions;
 
 	int bits;
 	int chunk;

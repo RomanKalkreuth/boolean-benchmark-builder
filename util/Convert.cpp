@@ -8,11 +8,24 @@
 #include "Convert.h"
 
 Convert::Convert() {
-	// TODO Auto-generated constructor stub
 
 }
 
 Convert::~Convert() {
-	// TODO Auto-generated destructor stub
+
+}
+
+int Convert::binToDec(const std::vector<char>* bin){
+	int dec;
+
+	return dec;
+}
+
+std::vector<char>* Convert::decToBin(int dec){
+
+	std::vector<char>* bin = new std::vector<char>();
+
+	return bin;
+
 }
 

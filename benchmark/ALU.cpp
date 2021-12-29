@@ -7,7 +7,7 @@
 
 #include "ALU.h"
 
-ALU::ALU(std::vector<Function> *p_functions, int p_bits) {
+ALU::ALU(std::vector<Function*> *p_functions, int p_bits) {
 	if (p_functions != nullptr) {
 		this->functions = p_functions;
 	} else {
@@ -37,22 +37,24 @@ void ALU::build() {
 
 	int op1 = 0;
 	int op2 = 0;
-	int op = 0;
+	int result = 0;
 
-	int row = 0;
+	int rows = table->getRows();
 
-	Function* function;
+	int index = 0;
 
-	for (int opcode = 0; opcode < opcodes; opcode++) {
+	Function *function = functions->at(index);
 
-		for (int i = 0; i < chunk; i++) {
+	for (int i = 0; i < rows; i++) {
+		if (i % chunk == 1) {
+			index++;
+			function = functions->at(index);
+		}
 
-			for (int j = 0; j < bits; j++) {
-				int op1 = table[row][j+offset];
-			}
+		for (int j = 0; j < bits; j++) {
 
 		}
-		row++;
 	}
+
 }
 
