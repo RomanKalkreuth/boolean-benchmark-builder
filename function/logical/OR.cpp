@@ -8,13 +8,14 @@
 #include "OR.h"
 
 OR::OR() {
-
+	this->inputs = 2;
+	this->outputs = 1;
 }
 
 OR::~OR() {
 
 }
 
-int OR::execute(int op1, int op2) {
-	return op2 | op2;
+int OR::execute(int *ops) {
+	return ops[0] | ops[1];
 }

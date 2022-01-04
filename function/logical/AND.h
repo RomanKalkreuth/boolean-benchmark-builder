@@ -14,7 +14,7 @@ class AND : public Function {
 public:
 	AND();
 	virtual ~AND();
-	int execute(int op1, int op2);
+	int execute(int *ops);
 };
 
 #endif /* FUNCTION_AND_H_ */

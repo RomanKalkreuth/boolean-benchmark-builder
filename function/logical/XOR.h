@@ -14,6 +14,7 @@ class XOR: public Function {
 public:
 	XOR();
 	virtual ~XOR();
+	int execute(int *ops);
 };
 
 #endif /* FUNCTION_XOR_H_ */

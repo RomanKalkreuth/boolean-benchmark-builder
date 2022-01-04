@@ -9,7 +9,6 @@
 
 Benchmark::Benchmark() {
 	table = new TruthTable(inputs,outputs);
-
 }
 
 Benchmark::~Benchmark() {

@@ -8,14 +8,15 @@
 #include "AND.h"
 
 AND::AND() {
-
+	this->inputs = 2;
+	this->outputs = 1;
 }
 
 AND::~AND() {
 
 }
 
-int AND::execute(int op1, int op2) {
-	return op1 & op2;
+int AND::execute(int *ops) {
+	return ops[0] & ops[1];
 }
 

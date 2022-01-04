@@ -12,7 +12,10 @@ class Function {
 public:
 	Function();
 	virtual ~Function();
-	virtual int execute(int op1, int op2) = 0;
+	virtual int execute(int *ops) = 0;
+
+	int inputs;
+	int outputs;
 };
 
 #endif /* FUNCTION_FUNCTION_H_ */

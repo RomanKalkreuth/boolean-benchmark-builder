@@ -8,10 +8,15 @@
 #include "XOR.h"
 
 XOR::XOR() {
-
+	this->inputs = 2;
+	this->outputs = 1;
 }
 
 XOR::~XOR() {
 
+}
+
+int XOR::execute(int *ops) {
+	return ops[0] ^ ops[1];
 }
 

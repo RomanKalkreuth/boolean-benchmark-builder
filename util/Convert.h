@@ -9,12 +9,18 @@
 #define UTIL_CONVERT_H_
 
 #include <vector>
+#include <cstdlib>
+#include <cmath>
+#include <iostream>
+#include <bitset>
+#include <algorithm>
+
 
 class Convert {
 public:
 	Convert();
 	virtual ~Convert();
-	int binToDec(const std::vector<char>* bin);
+	int binToDec(std::vector<char>* bin);
 	std::vector<char>* decToBin(int dec);
 };
 

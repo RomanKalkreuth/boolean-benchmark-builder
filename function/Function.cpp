@@ -9,7 +9,6 @@
 
 Function::Function() {
 
-
 }
 
 Function::~Function() {

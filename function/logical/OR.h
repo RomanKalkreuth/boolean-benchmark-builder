@@ -14,7 +14,7 @@ class OR : public Function {
 public:
 	OR();
 	virtual ~OR();
-	int execute(int op1, int op2);
+	int execute(int *ops);
 };
 
 #endif /* FUNCTION_OR_H_ */
