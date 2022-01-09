@@ -2,7 +2,11 @@
  * ALU.cpp
  *
  *  Created on: 09.12.2021
- *  Author: Roman Kalkreuth
+ *
+ *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
+ *         	https://orcid.org/0000-0003-1449-5131,
+ *          https://ls11-www.cs.tu-dortmund.de/staff/kalkreuth,
+ *         	https://twitter.com/RomanKalkreuth
  */
 
 #include "ALU.h"
@@ -35,8 +39,10 @@ void ALU::build() {
 
 	int offset = opcodesBits;
 
-	int op1 = 0;
-	int op2 = 0;
+	std::vector<int> op1;
+	std::vector<int> op2;
+	std::vector<int> op3;
+
 	int result = 0;
 
 	int rows = table->getRows();
@@ -55,6 +61,7 @@ void ALU::build() {
 
 		}
 	}
+
 
 }
 

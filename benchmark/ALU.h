@@ -23,7 +23,6 @@ public:
 
 	std::vector<Function*>* functions;
 
-	int bits;
 	int chunk;
 	int opcodes;
 	int opcodesBits;

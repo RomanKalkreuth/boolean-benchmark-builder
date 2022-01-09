@@ -2,7 +2,12 @@
  * Convert.cpp
  *
  *  Created on: 27.12.2021
- *      Author: roman
+ *
+ *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
+ *         	https://orcid.org/0000-0003-1449-5131,
+ *          https://ls11-www.cs.tu-dortmund.de/staff/kalkreuth,
+ *         	https://twitter.com/RomanKalkreuth
+ *
  */
 
 #include "Convert.h"
@@ -15,34 +20,36 @@ Convert::~Convert() {
 
 }
 
-int Convert::binToDec(std::vector<char> *bin) {
+int Convert::binToDec(std::vector<int> *bin) {
 	int dec = 0;
 	int val = 0;
 	int size = bin->size();
-	char c;
 
 	for (int i = 0; i < size; i++) {
-		c = bin->at(i);
-		val = (int) c - '0';
+		val = bin->at(i);
 		dec += (int) val * std::pow(2.0, i);
 	}
 
 	return dec;
 }
 
-std::vector<char>* Convert::decToBin(int dec) {
+std::vector<int>* Convert::decToBin(int dec) {
 
-	std::vector<char> *bin = new std::vector<char>();
-	char c;
+	std::vector<int> *bin = new std::vector<int>();
+	int val = 0;
 
 	while (dec != 0) {
-		c = (dec % 2 == 0 ? '0' : '1');
-		bin->push_back(c);
+		val = (dec % 2 == 0 ? 0 : 1);
+		bin->push_back(val);
 		dec /= 2;
 	}
 
 	std::reverse(bin->begin(), bin->end());
 	return bin;
 
+}
+
+int Convert::ctoi(char c) {
+	return (int) c - '0';
 }
 

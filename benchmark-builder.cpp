@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : boolean-benchmark-builder.cpp
 // Author      : Roman Kalkreuth
-// Version     :
+// Version     : 0.1 Beta
 // Copyright   : 
 // Description :
 //============================================================================
@@ -13,32 +13,29 @@
 
 #include "table/TruthTable.h"
 #include "util/Convert.h"
+#include "function/logical/AND.h"
+#include "benchmark/Adder.h"
 
 int main() {
-	int inputs=5;
-	int outputs=3;
-	std::string inputNames[]  = {"I1", "I2", "I3", "I4", "I5"};
-	std::string outputNames[] = {"O1", "O2", "O3"};
-	std::vector<char>* bin = new std::vector<char>{ '1', '0', '1', '1', '1', '1' };
+	const std::string inputNames[]  = {"I1", "I2", "I3", "I4", "I5"};
+	const std::string outputNames[] = {"O1", "O2", "O3"};
+
+	std::vector<int>* bin1 = new std::vector<int>{ 1, 0, 1, 1 , 1, 1 };
+	std::vector<int>* bin2 = new std::vector<int>{ 1, 0, 0, 0 , 1, 1 };
+
+	std::vector<std::vector<int>>* vec = new std::vector<std::vector<int>>();
+	std::vector<std::vector<int>>* result;
+
+	vec->push_back(*bin1);
+	vec->push_back(*bin2);
 
 	Convert* converter = new Convert();
+	Adder* adder = new Adder(2);
 
+	adder->build();
 
-	TruthTable table(inputs,outputs, inputNames, outputNames);
-
-	int dec = converter->binToDec(bin);
-
-	std::cout << dec << std::endl;
-
-	delete bin;
-
-	bin = converter->decToBin(108);
-
-	for (char i: *bin)
-	    std::cout << i << ' ';
-
-	//table.print(true);
-
+	TruthTable* table = adder->getTable();
+	table->print(false);
 
 	delete converter;
 
