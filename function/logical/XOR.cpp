@@ -12,17 +12,15 @@
 #include "XOR.h"
 
 XOR::XOR() {
-	this->inputs = 2;
-	this->outputs = 1;
 }
 
 XOR::~XOR() {
 
 }
 
-int* XOR::execute(int *ops) {
-	int *result = new int[outputs];
-	result[0] = ops[0] ^ ops[1];
+int XOR::execute(int *ops) {
+	int result = 0;
+	result = ops[0] ^ ops[1];
 	return result;
 }
 

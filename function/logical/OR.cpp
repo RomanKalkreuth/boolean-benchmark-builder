@@ -13,17 +13,15 @@
 #include "OR.h"
 
 OR::OR() {
-	this->inputs = 2;
-	this->outputs = 1;
 }
 
 OR::~OR() {
 
 }
 
-int* OR::execute(int *ops) {
-	int *result = new int[outputs];
-	result[0] = ops[0] | ops[1];
+int OR::execute(int* ops) {
+	int result = 0;
+	result = ops[0] | ops[1];
 	return result;
 }
 

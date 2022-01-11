@@ -1,58 +1,51 @@
 /*
  * ADD.cpp
  *
- *  Created on: 03.01.2022
- *
- *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
- *         	https://orcid.org/0000-0003-1449-5131,
- *          https://ls11-www.cs.tu-dortmund.de/staff/kalkreuth,
- *         	https://twitter.com/RomanKalkreuth
+ *  Created on: 10.01.2022
+ *      Author: roman
  */
 
 #include "ADD.h"
-#include <iostream>
 
 ADD::ADD() {
-	this->inputs = 3;
-	this->outputs = 2;
+
 }
 
 ADD::~ADD() {
 
 }
 
-int* ADD::execute(int *ops) {
-	//return ;
-}
-
 /**
  *   sum = a xor b xor c
- *   carry = ab+bc+ca
  */
 std::vector<std::vector<int>>* ADD::execute(
-		std::vector<std::vector<int>>* ops) {
+		std::vector<std::vector<int>> *ops) {
 	this->setup(ops);
-
-	op3 =  &ops->at(2);
 
 	int a = 0;
 	int b = 0;
 	int s = 0;
-	int carry = op3->at(0);
+	int c = 0;
 	int dim = op1->size();
+
+	std::vector<int> *carry = new std::vector<int>();
 
 	for (int i = 0; i < dim; i++) {
 		a = op1->at(i);
 		b = op2->at(i);
-		s = ((a ^ b) ^ carry);
+		s = ((a ^ b) ^ c);
 		result->push_back(s);
-		carry = ((a & b) | (a & carry)) | (b & carry);
+		c = ((a & b) | (a & c)) | (b & c);
 	}
-	op3->at(0) = carry;
- 	vec->push_back(*result);
-	vec->push_back(*op3);
+
+	carry->push_back(c);
+
+	vec->push_back(*result);
+	vec->push_back(*carry);
+
+	delete result;
+	delete carry;
 
 	return vec;
-
 }
 

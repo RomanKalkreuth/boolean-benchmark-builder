@@ -12,13 +12,13 @@
 #ifndef FUNCTION_OR_H_
 #define FUNCTION_OR_H_
 
-#include "../Function.h"
+#include "LogicalFunction.h"
 
-class OR: public Function {
+class OR: public LogicalFunction {
 public:
 	OR();
 	virtual ~OR();
-	int* execute(int *ops);
+	int execute(int *ops);
 	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>>* ops);
 };
 

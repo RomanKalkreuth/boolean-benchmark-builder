@@ -12,8 +12,8 @@
 #ifndef BENCHMARK_ADDER_H_
 #define BENCHMARK_ADDER_H_
 
+#include "../function/mathematical/ADDC.h"
 #include "Benchmark.h"
-#include "../function/mathematical/ADD.h"
 
 class Adder: public Benchmark {
 public:
@@ -22,7 +22,7 @@ public:
 	void build();
 
 private:
-	ADD* add;
+	ADDC* add;
 };
 
 #endif /* BENCHMARK_ADDER_H_ */

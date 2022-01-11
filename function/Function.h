@@ -14,17 +14,14 @@
 #define FUNCTION_FUNCTION_H_
 
 #include <vector>
+#include <exception>
+#include <iostream>
 
 class Function {
 public:
 	Function();
 	virtual ~Function();
-	virtual int* execute(int* ops) = 0;
 	virtual std::vector<std::vector<int>>* execute(std::vector<std::vector<int>>* ops) = 0;
-
-	int inputs;
-	int outputs;
-
 protected:
 	std::vector<int>* result;
 	std::vector<std::vector<int>>* vec;

@@ -12,13 +12,13 @@
 #ifndef FUNCTION_XOR_H_
 #define FUNCTION_XOR_H_
 
-#include "../Function.h"
+#include "LogicalFunction.h"
 
-class XOR: public Function {
+class XOR: public LogicalFunction {
 public:
 	XOR();
 	virtual ~XOR();
-	int* execute(int *ops);
+	int execute(int *ops);
 	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>>* ops);
 };
 

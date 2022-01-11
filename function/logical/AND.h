@@ -12,13 +12,13 @@
 #ifndef FUNCTION_AND_H_
 #define FUNCTION_AND_H_
 
-#include "../Function.h"
+#include "LogicalFunction.h"
 
-class AND: public Function {
+class AND: public LogicalFunction {
 public:
 	AND();
 	virtual ~AND();
-	int* execute(int *ops);
+	int execute(int *ops);
 	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>>* ops);
 };
 

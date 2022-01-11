@@ -113,7 +113,7 @@ void TruthTable::print(bool header) {
 	if (header) {
 
 		if (inputNames == nullptr || outputNames == nullptr ) {
-			throw std::invalid_argument("Header is sNULL!");
+			throw std::runtime_error("Header is NULL!");
 		}
 
 		for (int i = 0; i < inputs; i++) {

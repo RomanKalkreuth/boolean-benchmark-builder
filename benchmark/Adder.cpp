@@ -3,9 +3,9 @@
  *
  *  Created on: 06.01.2022
  *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
- *         https://orcid.org/0000-0003-1449-5131,
- *         https://ls11-www.cs.tu-dortmund.de/staff/kalkreuth,
- *         https://twitter.com/RomanKalkreuth
+ *         	https://orcid.org/0000-0003-1449-5131,
+ *          https://ls11-www.cs.tu-dortmund.de/staff/kalkreuth,
+ *         	https://twitter.com/RomanKalkreuth
  */
 
 #include "Adder.h"
@@ -17,7 +17,7 @@ Adder::Adder(int p_bits) {
 	outputs = bits + 1;
 
 	table = new TruthTable(inputs, outputs);
-	add = new ADD();
+	add = new ADDC();
 }
 
 Adder::~Adder() {
@@ -62,7 +62,6 @@ void Adder::build() {
 			op1.push_back(val1);
 			op2.push_back(val2);
 		}
-
 
 		cinVal = table->at(i, cinPos);
 		op3.push_back(cinVal);

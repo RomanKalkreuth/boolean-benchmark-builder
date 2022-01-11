@@ -1,5 +1,5 @@
 /*
- * SUB.h
+ * ADD.h
  *
  *  Created on: 03.01.2022
  *
@@ -9,17 +9,16 @@
  *         	https://twitter.com/RomanKalkreuth
  */
 
-#ifndef FUNCTION_MATHEMATICAL_SUB_H_
-#define FUNCTION_MATHEMATICAL_SUB_H_
+#ifndef FUNCTION_MATHEMATICAL_ADDC_H_
+#define FUNCTION_MATHEMATICAL_ADDC_H_
 
 #include "MathematicalFunction.h"
 
-class SUB: public MathematicalFunction  {
+class ADDC: public MathematicalFunction {
 public:
-	SUB();
-	virtual ~SUB();
+	ADDC();
+	virtual ~ADDC();
 	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>>* ops);
-	std::vector<int>* complement(std::vector<int>* bin);
 };
 
-#endif /* FUNCTION_MATHEMATICAL_SUB_H_ */
+#endif /* FUNCTION_MATHEMATICAL_ADDC_H_ */

@@ -12,24 +12,22 @@
 #include "AND.h"
 
 AND::AND() {
-	this->inputs = 2;
-	this->outputs = 1;
 }
 
 AND::~AND() {
 
 }
 
-int* AND::execute(int *ops) {
-	int *result = new int[outputs];
-	result[0] = ops[0] & ops[1];
+int AND::execute(int* ops) {
+	int result = 0;
+	result = ops[0] & ops[1];
 	return result;
 }
 
 std::vector<std::vector<int>>* AND::execute(
 		std::vector<std::vector<int>> *ops) {
 
-	this->setup(ops);
+	setup(ops);
 
 	int val1;
 	int val2;
