@@ -20,32 +20,13 @@ ADD::~ADD() {
  */
 std::vector<std::vector<int>>* ADD::execute(
 		std::vector<std::vector<int>> *ops) {
-	this->setup(ops);
 
-	int a = 0;
-	int b = 0;
-	int s = 0;
-	int c = 0;
-	int dim = op1->size();
+	this->setup();
+	std::vector<int>* op1 =  &ops->at(0);
+	std::vector<int>* op2 =  &ops->at(1);
 
-	std::vector<int> *carry = new std::vector<int>();
+	result = add(op1,op2);
 
-	for (int i = 0; i < dim; i++) {
-		a = op1->at(i);
-		b = op2->at(i);
-		s = ((a ^ b) ^ c);
-		result->push_back(s);
-		c = ((a & b) | (a & c)) | (b & c);
-	}
-
-	carry->push_back(c);
-
-	vec->push_back(*result);
-	vec->push_back(*carry);
-
-	delete result;
-	delete carry;
-
-	return vec;
+	return result;
 }
 

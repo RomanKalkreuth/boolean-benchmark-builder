@@ -17,6 +17,11 @@
 #include <string>
 #include <iostream>
 #include <string>
+#include <exception>
+
+#include "../util/Convert.h"
+#include "../util/Pow.h"
+
 
 class TruthTable {
 private:
@@ -24,6 +29,7 @@ private:
 	int outputs;
 	int cols;
 	int rows;
+	int chunkSize = 32;
 
 	std::vector<std::vector<int> > *table;
 
@@ -42,7 +48,9 @@ public:
 	void init(int rows, int cols, int outputs,
 			std::vector<std::vector<int> > *table);
 	void init(int rows, int cols, std::vector<std::vector<int> > *table);
-	void print(bool header);
+	void print();
+	void compressToLong();
+	void compressToInt();
 
 	int getInputs() const;
 	int getOutputs() const;
@@ -54,6 +62,10 @@ public:
 
 	const std::string* getInputNames() const;
 	const std::string* getOutputNames() const;
+
+	int getChunkSize() const;
+	void setChunkSize(int chunkSize);
+
 	const std::vector<std::vector<int> >* getTable() const;
 
 };

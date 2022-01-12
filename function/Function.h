@@ -23,14 +23,10 @@ public:
 	virtual ~Function();
 	virtual std::vector<std::vector<int>>* execute(std::vector<std::vector<int>>* ops) = 0;
 protected:
-	std::vector<int>* result;
-	std::vector<std::vector<int>>* vec;
+	std::vector<int>* res;
+	std::vector<std::vector<int>>* result;
 
-	std::vector<int>* op1;
-	std::vector<int>* op2;
-	std::vector<int>* op3;
-
-	void setup(std::vector<std::vector<int>> *ops);
+	void setup();
 };
 
 #endif /* FUNCTION_FUNCTION_H_ */

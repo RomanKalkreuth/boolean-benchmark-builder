@@ -8,11 +8,11 @@
  *         	https://twitter.com/RomanKalkreuth
  */
 
-#include "Adder.h"
+#include "AdderCarry.h"
 
-Adder::Adder(int p_bits, MathematicalFunction *p_function) {
+AdderCarry::AdderCarry(int p_bits, MathematicalFunction *p_function) {
 
-	if (p_bits > 0) {
+	if (p_bits > 0 ){
 		bits = p_bits;
 	} else {
 		throw std::invalid_argument("Number of bits must be greater zero!");
@@ -24,7 +24,7 @@ Adder::Adder(int p_bits, MathematicalFunction *p_function) {
 		throw std::invalid_argument("Function is NULL!");
 	}
 
-	inputs = bits * 2;
+	inputs = bits * 2 + 1;
 	outputs = bits + 1;
 
 	function = p_function;
@@ -32,17 +32,17 @@ Adder::Adder(int p_bits, MathematicalFunction *p_function) {
 	table = new TruthTable(inputs, outputs);
 }
 
-Adder::~Adder() {
+AdderCarry::~AdderCarry() {
 	delete function;
 }
 
 /**
  *
  */
-void Adder::build() {
+void AdderCarry::build() {
 
-	std::vector<int> op1(bits);
-	std::vector<int> op2(bits);
+	std::vector<int> op1;
+	std::vector<int> op2;
 	std::vector<int> op3;
 
 	std::vector<int> *sum;
@@ -52,10 +52,13 @@ void Adder::build() {
 	int rows = table->getRows();
 	int cols = table->getCols();
 
+	int cinVal = 0;
 	int coutVal = 0;
-	int coutPos = 2 * bits;
 
-	int sumPos = coutPos + 1;
+	int cinPos = 2 * bits;
+	int coutPos = cols - 1;
+
+	int outputPos = 2 * bits + 1;
 
 	for (int i = 0; i < rows; i++) {
 
@@ -72,26 +75,25 @@ void Adder::build() {
 			op2.push_back(val2);
 		}
 
-		std::reverse(op1.begin(), op1.end());
-		std::reverse(op2.begin(), op2.end());
+		cinVal = table->at(i, cinPos);
+		op3.push_back(cinVal);
 
 		ops->push_back(op1);
 		ops->push_back(op2);
+		ops->push_back(op3);
+
 		result = function->execute(ops);
 
 		sum = &result->at(0);
 		carry = &result->at(1);
 
-		std::reverse(sum->begin(), sum->end());
-
-		coutVal = carry->at(0);
-			table->set(i, coutPos, coutVal);
-
 		for (int j = 0; j < bits; j++) {
 			s = sum->at(j);
-			table->set(i, j + sumPos, s);
+			table->set(i, j + outputPos, s);
 		}
 
+		coutVal = carry->at(0);
+		table->set(i, coutPos, coutVal);
 	}
 
 }

@@ -20,16 +20,27 @@ Convert::~Convert() {
 
 }
 
-int Convert::binToDec(std::vector<int> *bin) {
+int Convert::binToInt(std::vector<int> *bin) {
 	int dec = 0;
 	int val = 0;
 	int size = bin->size();
 
 	for (int i = 0; i < size; i++) {
 		val = bin->at(i);
-		dec += (int) val * std::pow(2.0, i);
+		dec += (int) val * std::pow(2, i);
 	}
+	return dec;
+}
 
+long Convert::binToLong(std::vector<int> *bin) {
+	long dec = 0;
+	int val = 0;
+	int size = bin->size();
+
+	for (int i = 0; i < size; i++) {
+		val = bin->at(i);
+		dec += (long) val * std::pow(2, i);
+	}
 	return dec;
 }
 
@@ -43,7 +54,6 @@ std::vector<int>* Convert::decToBin(int dec) {
 		bin->push_back(val);
 		dec /= 2;
 	}
-
 	std::reverse(bin->begin(), bin->end());
 	return bin;
 

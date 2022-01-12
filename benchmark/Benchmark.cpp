@@ -11,17 +11,14 @@
 
 #include "Benchmark.h"
 
-#include <iostream>
 
 Benchmark::Benchmark() {
 	ops = new std::vector<std::vector<int>>();
-	result = new std::vector<std::vector<int>>();
 }
 
 Benchmark::~Benchmark() {
 	delete table;
 	delete ops;
-	delete result;
 }
 
 TruthTable* Benchmark::getTable() {

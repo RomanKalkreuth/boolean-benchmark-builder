@@ -12,18 +12,16 @@
 #include "Function.h"
 
 Function::Function() {
-	result = new std::vector<int>();
-	vec = new std::vector<std::vector<int>>();
+	res = new std::vector<int>();
+	result = new std::vector<std::vector<int>>();
 }
 
 Function::~Function() {
+	delete res;
 	delete result;
-	delete vec;
 }
 
-void Function::setup(std::vector<std::vector<int>> *ops) {
-	op1 = &(ops->at(0));
-	op2 = &(ops->at(1));
+void Function::setup() {
+	res->clear();
 	result->clear();
-	vec->clear();
 }

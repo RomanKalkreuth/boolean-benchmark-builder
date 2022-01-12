@@ -23,30 +23,20 @@ ADDC::~ADDC() {
  *   carry = ab+bc+ca
  */
 std::vector<std::vector<int>>* ADDC::execute(
-		std::vector<std::vector<int>>* ops) {
-	this->setup(ops);
+		std::vector<std::vector<int>> *ops) {
 
-	op3 =  &ops->at(2);
+	this->setup();
+	std::vector<int> *op1 = &ops->at(0);
+	std::vector<int> *op2 = &ops->at(1);
+	std::vector<int> *op3 = &ops->at(2);
 
-	int a = 0;
-	int b = 0;
-	int s = 0;
-	int carry = op3->at(0);
-	int dim = op1->size();
+	std::vector<int> sum;
 
-	for (int i = 0; i < dim; i++) {
-		a = op1->at(i);
-		b = op2->at(i);
-		s = ((a ^ b) ^ carry);
-		result->push_back(s);
-		carry = ((a & b) | (a & carry)) | (b & carry);
-	}
+	int carryIn = op3->at(0);
 
-	op3->at(0) = carry;
- 	vec->push_back(*result);
-	vec->push_back(*op3);
+	result = addc(op1,op2, carryIn);
 
-	return vec;
+	return result;
 
 }
 

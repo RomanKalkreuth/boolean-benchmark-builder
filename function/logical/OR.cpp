@@ -27,7 +27,10 @@ int OR::execute(int* ops) {
 
 std::vector<std::vector<int>>* OR::execute(
 		std::vector<std::vector<int>> *ops) {
-	this->setup(ops);
+
+	this->setup();
+	std::vector<int>* op1 =  &ops->at(0);
+	std::vector<int>* op2 =  &ops->at(1);
 
 	int val1;
 	int val2;
@@ -38,12 +41,12 @@ std::vector<std::vector<int>>* OR::execute(
 		val2 = op2->at(i);
 
 		int r = val1 | val2;
-		result->push_back(r);
+		res->push_back(r);
 	}
 
-	vec->push_back(*result);
+	result->push_back(*res);
 
-	return vec;
+	return result;
 
 }
 

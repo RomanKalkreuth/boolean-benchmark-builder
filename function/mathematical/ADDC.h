@@ -13,6 +13,8 @@
 #define FUNCTION_MATHEMATICAL_ADDC_H_
 
 #include "MathematicalFunction.h"
+#include <iostream>
+#include <algorithm>
 
 class ADDC: public MathematicalFunction {
 public:

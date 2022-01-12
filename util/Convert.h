@@ -25,9 +25,10 @@ class Convert {
 public:
 	Convert();
 	virtual ~Convert();
-	int binToDec(std::vector<int>* bin);
-	std::vector<int>* decToBin(int dec);
-	int ctoi(char c);
+	static int binToInt(std::vector<int>* bin);
+	static long binToLong(std::vector<int>* bin);
+	static std::vector<int>* decToBin(int dec);
+	static int ctoi(char c);
 };
 
 #endif /* UTIL_CONVERT_H_ */

@@ -12,13 +12,14 @@
 #ifndef BENCHMARK_ADDERCARRY_H_
 #define BENCHMARK_ADDERCARRY_H_
 
+#include "../function/mathematical/ADDC.h"
 #include "../function/mathematical/MathematicalFunction.h"
 #include "Benchmark.h"
 
-class Adder: public Benchmark {
+class AdderCarry: public Benchmark {
 public:
-	Adder(int p_bits, MathematicalFunction* p_function);
-	virtual ~Adder();
+	AdderCarry(int p_bits, MathematicalFunction* p_function);
+	virtual ~AdderCarry();
 	void build();
 
 private:

@@ -14,6 +14,11 @@
 
 #include "../table/TruthTable.h"
 
+#include <vector>
+#include <exception>
+#include <iostream>
+
+
 class Benchmark {
 public:
 	Benchmark();
