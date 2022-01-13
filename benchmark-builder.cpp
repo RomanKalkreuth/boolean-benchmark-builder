@@ -11,36 +11,43 @@
 #include <vector>
 #include <string>
 
+#include "benchmark/ALU.h"
 #include "benchmark/Adder.h"
 #include "benchmark/AdderCarry.h"
 #include "table/TruthTable.h"
 #include "util/Convert.h"
 #include "function/mathematical/SUB.h"
 #include "function/mathematical/ADD.h"
+#include "function/logical/AND.h"
+#include "function/Function.h"
 
 int main() {
-	const std::string inputNames[] = { "I1", "I2", "I3", "I4", "I5" };
-	const std::string outputNames[] = { "O1", "O2", "O3" };
 
 	std::vector<int> *bin1 = new std::vector<int> { 0, 0, 0, 0, 0, 0 };
 	std::vector<int> *bin2 = new std::vector<int> { 1, 0, 0, 0, 1, 1 };
 
-	std::vector<std::vector<int>> *vec = new std::vector<std::vector<int>>();
-	std::vector<std::vector<int>> *result;
-
-	vec->push_back(*bin1);
-	vec->push_back(*bin2);
-
 	SUB *sub = new SUB();
 	ADD *add = new ADD();
+	AND *fand = new AND();
 
-	Adder *adder = new Adder(3, add);
-	adder->build();
 
-	TruthTable *table = adder->getTable();
+	std::vector<Function*>* functions = new std::vector<Function*>();
+	functions->push_back(fand);
 
-	table->print();
-	table->compressToLong();
+	//Adder *adder = new Adder(3, sub);
+	//adder->build();
+	//TruthTable *table = adder->getTable();
+	//std::vector<std::vector<unsigned int>>* comprTable;
+	//comprTable = table->compress();
+
+
+	ALU *alu = new ALU(functions, 3);
+	TruthTable *table = alu->getTable();
+	table->printHumanReadable();
+
+
+	//delete comprTable;
+	//delete functions;
 
 	return 0;
 }

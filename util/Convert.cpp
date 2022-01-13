@@ -44,7 +44,7 @@ long Convert::binToLong(std::vector<int> *bin) {
 	return dec;
 }
 
-std::vector<int>* Convert::decToBin(int dec) {
+std::vector<int>* Convert::intToBin(int dec) {
 
 	std::vector<int> *bin = new std::vector<int>();
 	int val = 0;
@@ -56,7 +56,6 @@ std::vector<int>* Convert::decToBin(int dec) {
 	}
 	std::reverse(bin->begin(), bin->end());
 	return bin;
-
 }
 
 int Convert::ctoi(char c) {

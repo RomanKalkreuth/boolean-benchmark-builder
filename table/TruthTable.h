@@ -13,10 +13,10 @@
 #define TRUTHTABLE_H_
 
 #include <vector>
+#include <stack>
 #include <cmath>
 #include <string>
 #include <iostream>
-#include <string>
 #include <exception>
 
 #include "../util/Convert.h"
@@ -31,16 +31,18 @@ private:
 	int rows;
 	int chunkSize = 32;
 
+	std::vector<int>* separators;
+
 	std::vector<std::vector<int> > *table;
 
-	const std::string *inputNames;
-	const std::string *outputNames;
+	std::vector<std::string>* inputNames;
+	std::vector<std::string>* outputNames;
 
 public:
 
 	TruthTable(int p_inputs, int p_outputs);
-	TruthTable(int p_inputs, int p_outputs, std::string *p_input_names,
-			std::string *p_output_names);
+	TruthTable(int p_inputs, int p_outputs, std::vector<std::string>* p_input_names,
+			std::vector<std::string>* p_output_names, std::vector<int>* p_separators);
 
 	TruthTable(int p_bits);
 	virtual ~TruthTable();
@@ -49,8 +51,11 @@ public:
 			std::vector<std::vector<int> > *table);
 	void init(int rows, int cols, std::vector<std::vector<int> > *table);
 	void print();
-	void compressToLong();
-	void compressToInt();
+	void printHumanReadable();
+	void printHeader();
+	void printCompressedTable(std::vector<std::vector<unsigned int>>* comprTable);
+
+	std::vector<std::vector<unsigned int>>* compress();
 
 	int getInputs() const;
 	int getOutputs() const;
@@ -60,8 +65,8 @@ public:
 	int at(int i, int j) const;
 	void set(int i, int j, int val);
 
-	const std::string* getInputNames() const;
-	const std::string* getOutputNames() const;
+	const std::vector<std::string>* getInputNames() const;
+	const std::vector<std::string>* getOutputNames() const;
 
 	int getChunkSize() const;
 	void setChunkSize(int chunkSize);

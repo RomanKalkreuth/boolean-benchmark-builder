@@ -11,10 +11,11 @@
 #include <stdexcept>
 #include <vector>
 #include <cmath>
+#include <string>
+#include <stack>
 
 #include "Benchmark.h"
 #include "../function/Function.h"
-
 
 class ALU : public Benchmark{
 public:

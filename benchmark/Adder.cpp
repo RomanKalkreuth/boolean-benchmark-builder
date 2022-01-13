@@ -10,7 +10,7 @@
 
 #include "Adder.h"
 
-Adder::Adder(int p_bits, MathematicalFunction *p_function) {
+Adder::Adder(MathematicalFunction *p_function, int p_bits) {
 
 	if (p_bits > 0) {
 		bits = p_bits;
@@ -27,9 +27,12 @@ Adder::Adder(int p_bits, MathematicalFunction *p_function) {
 	inputs = bits * 2;
 	outputs = bits + 1;
 
-	function = p_function;
+	std::vector<std::string>* inputNames = new std::vector<std::string>{"I2", "I1", "I0"};
+	std::vector<std::string>* outputNames =  new std::vector<std::string>{ "S", "O2", "O1", "O0" };
 
-	table = new TruthTable(inputs, outputs);
+	std::vector<int>* separators = new std::vector<int>{2};
+
+	table = new TruthTable(inputs, outputs, inputNames, outputNames, separators);
 }
 
 Adder::~Adder() {
@@ -61,9 +64,10 @@ void Adder::build() {
 
 		op1.clear();
 		op2.clear();
-		op3.clear();
 
 		ops->clear();
+
+		//TODO: Optimize loading of the operators
 
 		for (int j = 0; j < bits; j++) {
 			int val1 = table->at(i, j);

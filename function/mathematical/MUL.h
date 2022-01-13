@@ -12,10 +12,13 @@
 #ifndef FUNCTION_MATHEMATICAL_MUL_H_
 #define FUNCTION_MATHEMATICAL_MUL_H_
 
-class MUL {
+#include "MathematicalFunction.h"
+
+class MUL: public MathematicalFunction {
 public:
 	MUL();
 	virtual ~MUL();
+	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>>* ops);
 };
 
 #endif /* FUNCTION_MATHEMATICAL_MUL_H_ */

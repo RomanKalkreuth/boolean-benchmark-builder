@@ -27,20 +27,27 @@ TruthTable::TruthTable(int p_inputs, int p_outputs) {
 	init(rows, cols, outputs, table);
 }
 
-TruthTable::TruthTable(int p_inputs, int p_outputs, std::string *p_input_names,
-		std::string *p_output_names) :
+TruthTable::TruthTable(int p_inputs, int p_outputs,
+		std::vector<std::string> *p_input_names,
+		std::vector<std::string> *p_output_names, std::vector<int> *p_separators) :
 		TruthTable(p_inputs, p_outputs) {
 
 	if (p_input_names != nullptr) {
 		this->inputNames = p_input_names;
 	} else {
-		throw std::invalid_argument("Function set is NULL!");
+		throw std::invalid_argument("p_input_names is NULL!");
 	}
 
 	if (p_output_names != nullptr) {
 		this->outputNames = p_output_names;
 	} else {
-		throw std::invalid_argument("Function set is NULL!");
+		throw std::invalid_argument("p_output_names is NULL!");
+	}
+
+	if (p_separators != nullptr) {
+		this->separators = p_separators;
+	} else {
+		throw std::invalid_argument("p_separators is NULL!");
 	}
 
 }
@@ -57,6 +64,9 @@ TruthTable::TruthTable(int p_bits) {
 
 TruthTable::~TruthTable() {
 	delete table;
+	delete inputNames;
+	delete outputNames;
+	delete separators;
 }
 
 int TruthTable::at(int i, int j) const {
@@ -106,16 +116,22 @@ void TruthTable::init(int rows, int cols,
 /**
  *
  */
-void TruthTable::print() {
+void TruthTable::printHumanReadable() {
 
-	int separator = inputs / 2;
-
+	if (separators == nullptr) {
+		throw std::runtime_error("Separators is NULL!");
+	}
 	for (int i = 0; i < rows; i++) {
+		std::vector<int>::iterator it = separators->begin();
+
 		for (int j = 0; j < cols; j++) {
 			std::cout << (*table)[i][j];
 
-			if ((j + 1) == separator) {
-				std::cout << " ";
+			if(it != separators->end()){
+				if( j == *it){
+					std::cout << " ";
+					++it;
+				}
 			}
 
 			if ((j + 1) == inputs) {
@@ -126,85 +142,107 @@ void TruthTable::print() {
 	}
 }
 
-/*
- if (header) {
-
- if (inputNames == nullptr || outputNames == nullptr) {
- throw std::runtime_error("Header is NULL!");
- }
-
- for (int i = 0; i < inputs; i++) {
- std::cout << inputNames[i] << " ";
- }
-
- for (int i = 0; i < outputs; i++) {
- std::cout << outputNames[i] << " ";
- }
-
- std::cout << std::endl;
- }*/
-
-void TruthTable::compressToInt() {
-
-	int val = 0;
-	std::vector<int> compressed;
-	std::vector<int> bin;
-
-	for (int i = 0; i < cols; i++) {
-		for (int j = 0; j < rows; j++) {
-			bin.push_back((*table)[j][i]);
+/**
+ *
+ */
+void TruthTable::print() {
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			std::cout << (*table)[i][j];
 		}
-		val = Convert::binToInt(&bin);
-		compressed.push_back(val);
-		bin.clear();
-		std::cout << val << std::endl;
+		std::cout << std::endl;
 	}
-	std::cout << std::endl;
 }
 
-void TruthTable::compressToLong() {
+/**
+ *
+ */
 
-	if (rows % chunkSize != 0) {
-		throw new std::runtime_error("Number of rows does "
-				"not fit with chunk size " + chunkSize);
+//TODO: Revise method
+void TruthTable::printHeader() {
+
+	if (inputNames == nullptr || outputNames == nullptr) {
+		throw std::runtime_error("Header is NULL!");
+	}
+
+	for (int i = 0; i < inputs; i++) {
+		std::cout << inputNames->at(i) << " ";
+	}
+
+	for (int i = 0; i < outputs; i++) {
+		std::cout << outputNames->at(i) << " ";
 	}
 
 	std::cout << std::endl;
 
-	unsigned long val = 0;
-	std::vector<std::vector<unsigned long>> compressed;
-	std::vector<unsigned long> chunks;
+}
+
+//TODO: Implement method
+void TruthTable::printCompressedTable(
+		std::vector<std::vector<unsigned int>> *comprTable) {
+
+}
+
+std::vector<std::vector<unsigned int>>* TruthTable::compress() {
+
+	bool chunk = false;
+
+	if (rows > chunkSize) {
+		if ((rows % chunkSize) != 0) {
+			throw new std::runtime_error("Number of rows does "
+					"not fit with chunk size " + chunkSize);
+		}
+		chunk = true;
+	}
+
+	unsigned int val = 0;
+	std::vector<std::vector<unsigned int>> *comprTable = new std::vector<
+			std::vector<unsigned int>>();
+
+	std::vector<unsigned int> chunks;
+
 	int b;
 	int e;
 
 	for (int i = 0; i < cols; i++) {
 		for (int j = 0; j < rows; j++) {
 			b = (*table)[j][i];
-			e = j % chunkSize;
+
+			if (chunk) {
+				e = j % chunkSize;
+			} else {
+				e = j;
+			}
+
 			val += b * Pow::pow(2.0, e);
 
-			if ((j + 1) % chunkSize == 0) {
-				std::cout << val << std::endl;
+			if (chunk && ((j + 1) % chunkSize == 0)) {
 				chunks.push_back(val);
 				val = 0;
 			}
 		}
-		compressed.push_back(chunks);
-		std::cout << std::endl;
+		if (chunk) {
+			comprTable->push_back(chunks);
+		} else {
+			std::vector<unsigned int> col(val);
+			comprTable->push_back(col);
+		}
+
 		chunks.clear();
 	}
 
+	return comprTable;
 }
 
 int TruthTable::getCols() const {
 	return cols;
 }
 
-const std::string* TruthTable::getInputNames() const {
+const std::vector<std::string>* TruthTable::getInputNames() const {
 	return inputNames;
 }
 
-const std::string* TruthTable::getOutputNames() const {
+const std::vector<std::string>* TruthTable::getOutputNames() const {
 	return outputNames;
 }
 

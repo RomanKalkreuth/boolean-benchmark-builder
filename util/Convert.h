@@ -27,7 +27,7 @@ public:
 	virtual ~Convert();
 	static int binToInt(std::vector<int>* bin);
 	static long binToLong(std::vector<int>* bin);
-	static std::vector<int>* decToBin(int dec);
+	static std::vector<int>* intToBin(int dec);
 	static int ctoi(char c);
 };
 

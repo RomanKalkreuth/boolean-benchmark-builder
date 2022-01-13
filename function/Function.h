@@ -25,7 +25,6 @@ public:
 protected:
 	std::vector<int>* res;
 	std::vector<std::vector<int>>* result;
-
 	void setup();
 };
 

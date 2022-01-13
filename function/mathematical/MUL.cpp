@@ -12,11 +12,22 @@
 #include "MUL.h"
 
 MUL::MUL() {
-	// TODO Auto-generated constructor stub
 
 }
 
 MUL::~MUL() {
-	// TODO Auto-generated destructor stub
+}
+
+/**
+ *
+ */
+std::vector<std::vector<int>>* MUL::execute(
+		std::vector<std::vector<int>> *ops) {
+
+	this->setup();
+	std::vector<int>* op1 =  &ops->at(0);
+	std::vector<int>* op2 =  &ops->at(1);
+
+	return result;
 }
 

@@ -8,12 +8,11 @@
 #include "Pow.h"
 
 Pow::Pow() {
-	// TODO Auto-generated constructor stub
 
 }
 
 Pow::~Pow() {
-	// TODO Auto-generated destructor stub
+
 }
 
 unsigned long Pow::pow(int x, unsigned int p)

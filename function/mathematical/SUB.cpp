@@ -47,27 +47,15 @@ std::vector<int>* SUB::complement(std::vector<int> *bin) {
 std::vector<std::vector<int>>* SUB::execute(
 		std::vector<std::vector<int>> *ops) {
 
-
 	this->setup();
 	std::vector<int>* op1 =  &ops->at(0);
 	std::vector<int>* op2 =  &ops->at(1);
-	std::vector<int>* op3 =  &ops->at(2);
-
-	int a = 0;
-	int b = 0;
-	int s = 0;
-	int c =  op3->at(0);
-	int dim = op1->size();
 
 	std::vector<int> *cmpl;
-	std::vector<int> carry;
 
 	cmpl = complement(op2);
 
-	carry.push_back(c);
-
-	result->push_back(*res);
-	result->push_back(carry);
+	result = add(op1,cmpl);
 
 	delete cmpl;
 

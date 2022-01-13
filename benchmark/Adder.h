@@ -17,10 +17,9 @@
 
 class Adder: public Benchmark {
 public:
-	Adder(int p_bits, MathematicalFunction* p_function);
+	Adder(MathematicalFunction *p_function, int p_bits);
 	virtual ~Adder();
 	void build();
-
 private:
 	MathematicalFunction* function;
 };
