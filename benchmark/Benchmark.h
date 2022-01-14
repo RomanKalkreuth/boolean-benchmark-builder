@@ -25,12 +25,12 @@ public:
 	virtual ~Benchmark();
 
 	TruthTable *table;
-	std::vector<std::vector<int>>* ops;
+	std::vector<std::vector<int>>* operands;
 	std::vector<std::vector<int>>* result;
 
 	int inputs;
 	int outputs;
-	int bits;
+	int bitLength;
 
 	virtual void build() = 0;
 

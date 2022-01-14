@@ -13,6 +13,7 @@
 #include <cmath>
 #include <string>
 #include <stack>
+#include <algorithm>
 
 #include "Benchmark.h"
 #include "../function/Function.h"
@@ -24,9 +25,9 @@ public:
 
 	std::vector<Function*>* functions;
 
-	int chunk;
-	int opcodes;
-	int opcodesBits;
+	int chunkSize;
+	int opcodeBits;
+	int numFunctions;
 
 	void build();
 

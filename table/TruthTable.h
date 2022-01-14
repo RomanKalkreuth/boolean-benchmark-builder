@@ -19,8 +19,7 @@
 #include <iostream>
 #include <exception>
 
-#include "../util/Convert.h"
-#include "../util/Pow.h"
+#include "../util/Util.h"
 
 
 class TruthTable {
@@ -29,12 +28,10 @@ private:
 	int outputs;
 	int cols;
 	int rows;
-	int chunkSize = 32;
+	int chunkSize;
 
 	std::vector<int>* separators;
-
 	std::vector<std::vector<int> > *table;
-
 	std::vector<std::string>* inputNames;
 	std::vector<std::string>* outputNames;
 
@@ -56,15 +53,15 @@ public:
 	void printCompressedTable(std::vector<std::vector<unsigned int>>* comprTable);
 
 	std::vector<std::vector<unsigned int>>* compress();
+	void trim(int row);
+
+	int at(int i, int j) const;
+	void set(int i, int j, int val);
 
 	int getInputs() const;
 	int getOutputs() const;
 	int getRows() const;
 	int getCols() const;
-
-	int at(int i, int j) const;
-	void set(int i, int j, int val);
-
 	const std::vector<std::string>* getInputNames() const;
 	const std::vector<std::string>* getOutputNames() const;
 

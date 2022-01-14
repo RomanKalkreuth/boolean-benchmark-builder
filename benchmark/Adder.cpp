@@ -10,10 +10,10 @@
 
 #include "Adder.h"
 
-Adder::Adder(MathematicalFunction *p_function, int p_bits) {
+Adder::Adder(MathematicalFunction *p_function, int p_bit_length) {
 
-	if (p_bits > 0) {
-		bits = p_bits;
+	if (p_bit_length > 0) {
+		bitLength = p_bit_length;
 	} else {
 		throw std::invalid_argument("Number of bits must be greater zero!");
 	}
@@ -24,8 +24,8 @@ Adder::Adder(MathematicalFunction *p_function, int p_bits) {
 		throw std::invalid_argument("Function is NULL!");
 	}
 
-	inputs = bits * 2;
-	outputs = bits + 1;
+	inputs = bitLength * 2;
+	outputs = bitLength + 1;
 
 	std::vector<std::string>* inputNames = new std::vector<std::string>{"I2", "I1", "I0"};
 	std::vector<std::string>* outputNames =  new std::vector<std::string>{ "S", "O2", "O1", "O0" };
@@ -44,9 +44,8 @@ Adder::~Adder() {
  */
 void Adder::build() {
 
-	std::vector<int> op1(bits);
-	std::vector<int> op2(bits);
-	std::vector<int> op3;
+	std::vector<int> op1(bitLength);
+	std::vector<int> op2(bitLength);
 
 	std::vector<int> *sum;
 	std::vector<int> *carry;
@@ -56,7 +55,7 @@ void Adder::build() {
 	int cols = table->getCols();
 
 	int coutVal = 0;
-	int coutPos = 2 * bits;
+	int coutPos = 2 * bitLength;
 
 	int sumPos = coutPos + 1;
 
@@ -65,13 +64,13 @@ void Adder::build() {
 		op1.clear();
 		op2.clear();
 
-		ops->clear();
+		operands->clear();
 
 		//TODO: Optimize loading of the operators
 
-		for (int j = 0; j < bits; j++) {
+		for (int j = 0; j < bitLength; j++) {
 			int val1 = table->at(i, j);
-			int val2 = table->at(i, j + bits);
+			int val2 = table->at(i, j + bitLength);
 			op1.push_back(val1);
 			op2.push_back(val2);
 		}
@@ -79,9 +78,9 @@ void Adder::build() {
 		std::reverse(op1.begin(), op1.end());
 		std::reverse(op2.begin(), op2.end());
 
-		ops->push_back(op1);
-		ops->push_back(op2);
-		result = function->execute(ops);
+		operands->push_back(op1);
+		operands->push_back(op2);
+		result = function->execute(operands);
 
 		sum = &result->at(0);
 		carry = &result->at(1);
@@ -91,7 +90,7 @@ void Adder::build() {
 		coutVal = carry->at(0);
 			table->set(i, coutPos, coutVal);
 
-		for (int j = 0; j < bits; j++) {
+		for (int j = 0; j < bitLength; j++) {
 			s = sum->at(j);
 			table->set(i, j + sumPos, s);
 		}

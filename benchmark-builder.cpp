@@ -15,39 +15,37 @@
 #include "benchmark/Adder.h"
 #include "benchmark/AdderCarry.h"
 #include "table/TruthTable.h"
-#include "util/Convert.h"
 #include "function/mathematical/SUB.h"
 #include "function/mathematical/ADD.h"
 #include "function/logical/AND.h"
+#include "function/logical/OR.h"
+#include "function/logical/XOR.h"
 #include "function/Function.h"
 
 int main() {
 
-	std::vector<int> *bin1 = new std::vector<int> { 0, 0, 0, 0, 0, 0 };
-	std::vector<int> *bin2 = new std::vector<int> { 1, 0, 0, 0, 1, 1 };
-
-	SUB *sub = new SUB();
-	ADD *add = new ADD();
-	AND *fand = new AND();
-
+	SUB *funcSub = new SUB();
+	ADD *funcAdd = new ADD();
+	AND *funcAnd = new AND();
+	OR *funcOr = new OR();
+	XOR *funcXor = new XOR();
 
 	std::vector<Function*>* functions = new std::vector<Function*>();
-	functions->push_back(fand);
 
-	//Adder *adder = new Adder(3, sub);
-	//adder->build();
-	//TruthTable *table = adder->getTable();
-	//std::vector<std::vector<unsigned int>>* comprTable;
-	//comprTable = table->compress();
-
+	functions->push_back(funcAnd);
+	functions->push_back(funcOr);
+	functions->push_back(funcXor);
+	functions->push_back(funcAdd);
+	functions->push_back(funcSub);
 
 	ALU *alu = new ALU(functions, 3);
+	alu->build();
 	TruthTable *table = alu->getTable();
 	table->printHumanReadable();
 
+	std::vector<std::vector<unsigned int>>* compressed = table->compress();
 
-	//delete comprTable;
-	//delete functions;
+	table->printCompressedTable(compressed);
 
 	return 0;
 }

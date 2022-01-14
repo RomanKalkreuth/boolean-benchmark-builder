@@ -1,26 +1,32 @@
 /*
- * Convert.cpp
+ * Util.cpp
  *
- *  Created on: 27.12.2021
- *
- *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
- *         	https://orcid.org/0000-0003-1449-5131,
- *          https://ls11-www.cs.tu-dortmund.de/staff/kalkreuth,
- *         	https://twitter.com/RomanKalkreuth
- *
+ *  Created on: 14.01.2022
+ *      Author: roman
  */
 
-#include "Convert.h"
+#include "Util.h"
 
-Convert::Convert() {
-
-}
-
-Convert::~Convert() {
+Util::Util() {
 
 }
 
-int Convert::binToInt(std::vector<int> *bin) {
+Util::~Util() {
+
+}
+
+
+unsigned long Util::pow(int x, unsigned int p)
+{
+  if (p == 0) return 1;
+  if (p == 1) return x;
+
+  unsigned long tmp = pow(x, p/2);
+  if (p%2 == 0) return tmp * tmp;
+  else return x * tmp * tmp;
+}
+
+int Util::binToInt(std::vector<int> *bin) {
 	int dec = 0;
 	int val = 0;
 	int size = bin->size();
@@ -32,7 +38,7 @@ int Convert::binToInt(std::vector<int> *bin) {
 	return dec;
 }
 
-long Convert::binToLong(std::vector<int> *bin) {
+long Util::binToLong(std::vector<int> *bin) {
 	long dec = 0;
 	int val = 0;
 	int size = bin->size();
@@ -44,7 +50,7 @@ long Convert::binToLong(std::vector<int> *bin) {
 	return dec;
 }
 
-std::vector<int>* Convert::intToBin(int dec) {
+std::vector<int>* Util::intToBin(int dec) {
 
 	std::vector<int> *bin = new std::vector<int>();
 	int val = 0;
@@ -58,7 +64,8 @@ std::vector<int>* Convert::intToBin(int dec) {
 	return bin;
 }
 
-int Convert::ctoi(char c) {
+int Util::ctoi(char c) {
 	return (int) c - '0';
 }
+
 

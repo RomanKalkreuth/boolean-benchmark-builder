@@ -16,20 +16,32 @@
  */
 TruthTable::TruthTable(int p_inputs, int p_outputs) {
 
-	inputs = p_inputs;
-	outputs = p_outputs;
+	if (p_inputs > 0) {
+		this->inputs = p_inputs;
+	} else {
+		throw std::invalid_argument("Inputs must be greater 0!");
+	}
+
+	if (p_outputs > 0) {
+		this->outputs = p_outputs;
+	} else {
+		throw std::invalid_argument("Outputs must be greater 0!");
+	}
 
 	cols = inputs + outputs;
 	rows = std::pow(2.0, inputs);
 
 	table = new std::vector<std::vector<int> >(rows, std::vector<int>(cols, 0));
 
+	chunkSize = 32;
+
 	init(rows, cols, outputs, table);
 }
 
 TruthTable::TruthTable(int p_inputs, int p_outputs,
 		std::vector<std::string> *p_input_names,
-		std::vector<std::string> *p_output_names, std::vector<int> *p_separators) :
+		std::vector<std::string> *p_output_names,
+		std::vector<int> *p_separators) :
 		TruthTable(p_inputs, p_outputs) {
 
 	if (p_input_names != nullptr) {
@@ -127,8 +139,8 @@ void TruthTable::printHumanReadable() {
 		for (int j = 0; j < cols; j++) {
 			std::cout << (*table)[i][j];
 
-			if(it != separators->end()){
-				if( j == *it){
+			if (it != separators->end()) {
+				if (j == *it) {
 					std::cout << " ";
 					++it;
 				}
@@ -177,9 +189,23 @@ void TruthTable::printHeader() {
 
 }
 
-//TODO: Implement method
 void TruthTable::printCompressedTable(
 		std::vector<std::vector<unsigned int>> *comprTable) {
+
+	std::vector<unsigned int>* vec = &comprTable->at(0);
+
+	int rows = vec->size();
+	int cols = comprTable->size();
+
+	for (int i = 0; i < rows; i++) {
+		for (int j=0; j < cols; j++) {
+			std::cout << (*comprTable)[j][i] << " ";
+			if(j==inputs-1){
+				std::cout<<"  ";
+			}
+		}
+		std::cout<<std::endl;
+	}
 
 }
 
@@ -194,6 +220,7 @@ std::vector<std::vector<unsigned int>>* TruthTable::compress() {
 		}
 		chunk = true;
 	}
+
 
 	unsigned int val = 0;
 	std::vector<std::vector<unsigned int>> *comprTable = new std::vector<
@@ -214,7 +241,7 @@ std::vector<std::vector<unsigned int>>* TruthTable::compress() {
 				e = j;
 			}
 
-			val += b * Pow::pow(2.0, e);
+			val += b * std::pow(2.0, e);
 
 			if (chunk && ((j + 1) % chunkSize == 0)) {
 				chunks.push_back(val);
@@ -227,11 +254,21 @@ std::vector<std::vector<unsigned int>>* TruthTable::compress() {
 			std::vector<unsigned int> col(val);
 			comprTable->push_back(col);
 		}
-
 		chunks.clear();
 	}
 
 	return comprTable;
+}
+
+/**
+ *
+ */
+void TruthTable::trim(int row) {
+
+	for (int i = row; i < rows; i++) {
+		table->erase(table->begin() + i);
+	}
+	rows = table->size();
 }
 
 int TruthTable::getCols() const {

@@ -31,15 +31,15 @@ std::vector<std::vector<int>>* XOR::execute(
 	std::vector<int>* op1 =  &ops->at(0);
 	std::vector<int>* op2 =  &ops->at(1);
 
-	int val1;
-	int val2;
+	int val1 = 0;
+	int val2 = 0;
+	int r = 0;
 	int dim = op1->size();
 
 	for (int i = 0; i < dim; i++) {
 		val1 = op1->at(i);
 		val2 = op2->at(i);
-
-		int r = val1 ^ val2;
+		r = val1 ^ val2;
 		res->push_back(r);
 	}
 

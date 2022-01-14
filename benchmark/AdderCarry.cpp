@@ -13,7 +13,7 @@
 AdderCarry::AdderCarry(int p_bits, MathematicalFunction *p_function) {
 
 	if (p_bits > 0 ){
-		bits = p_bits;
+		bitLength = p_bits;
 	} else {
 		throw std::invalid_argument("Number of bits must be greater zero!");
 	}
@@ -24,8 +24,8 @@ AdderCarry::AdderCarry(int p_bits, MathematicalFunction *p_function) {
 		throw std::invalid_argument("Function is NULL!");
 	}
 
-	inputs = bits * 2 + 1;
-	outputs = bits + 1;
+	inputs = bitLength * 2 + 1;
+	outputs = bitLength + 1;
 
 	function = p_function;
 
@@ -55,10 +55,10 @@ void AdderCarry::build() {
 	int cinVal = 0;
 	int coutVal = 0;
 
-	int cinPos = 2 * bits;
+	int cinPos = 2 * bitLength;
 	int coutPos = cols - 1;
 
-	int outputPos = 2 * bits + 1;
+	int outputPos = 2 * bitLength + 1;
 
 	for (int i = 0; i < rows; i++) {
 
@@ -66,11 +66,11 @@ void AdderCarry::build() {
 		op2.clear();
 		op3.clear();
 
-		ops->clear();
+		operands->clear();
 
-		for (int j = 0; j < bits; j++) {
+		for (int j = 0; j < bitLength; j++) {
 			int val1 = table->at(i, j);
-			int val2 = table->at(i, j + bits);
+			int val2 = table->at(i, j + bitLength);
 			op1.push_back(val1);
 			op2.push_back(val2);
 		}
@@ -78,16 +78,16 @@ void AdderCarry::build() {
 		cinVal = table->at(i, cinPos);
 		op3.push_back(cinVal);
 
-		ops->push_back(op1);
-		ops->push_back(op2);
-		ops->push_back(op3);
+		operands->push_back(op1);
+		operands->push_back(op2);
+		operands->push_back(op3);
 
-		result = function->execute(ops);
+		result = function->execute(operands);
 
 		sum = &result->at(0);
 		carry = &result->at(1);
 
-		for (int j = 0; j < bits; j++) {
+		for (int j = 0; j < bitLength; j++) {
 			s = sum->at(j);
 			table->set(i, j + outputPos, s);
 		}

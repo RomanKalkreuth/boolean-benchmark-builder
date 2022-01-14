@@ -13,12 +13,12 @@
 
 
 Benchmark::Benchmark() {
-	ops = new std::vector<std::vector<int>>();
+	operands = new std::vector<std::vector<int>>();
 }
 
 Benchmark::~Benchmark() {
 	delete table;
-	delete ops;
+	delete operands;
 }
 
 TruthTable* Benchmark::getTable() {
