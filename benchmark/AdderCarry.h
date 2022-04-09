@@ -16,7 +16,7 @@
 #include "../function/mathematical/MathematicalFunction.h"
 #include "Benchmark.h"
 
-class AdderCarry: public Benchmark {
+class AdderCarry : public Benchmark {
 public:
 	AdderCarry(int p_bits, MathematicalFunction* p_function);
 	virtual ~AdderCarry();

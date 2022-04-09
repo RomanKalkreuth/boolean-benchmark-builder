@@ -28,11 +28,17 @@ public:
 	std::vector<std::vector<int>>* operands;
 	std::vector<std::vector<int>>* result;
 
+	std::vector<std::string>* inputNames;
+	std::vector<std::string>* outputNames;
+
 	int inputs;
 	int outputs;
 	int bitLength;
 
 	virtual void build() = 0;
+
+	virtual void generateInputNames();
+	virtual void generateOutputNames();
 
 	TruthTable* getTable();
 

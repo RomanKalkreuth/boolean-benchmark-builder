@@ -27,8 +27,8 @@ Adder::Adder(MathematicalFunction *p_function, int p_bit_length) {
 	inputs = bitLength * 2;
 	outputs = bitLength + 1;
 
-	std::vector<std::string>* inputNames = new std::vector<std::string>{"I2", "I1", "I0"};
-	std::vector<std::string>* outputNames =  new std::vector<std::string>{ "S", "O2", "O1", "O0" };
+	generateInputNames();
+	generateOutputNames();
 
 	std::vector<int>* separators = new std::vector<int>{2};
 
@@ -98,4 +98,15 @@ void Adder::build() {
 	}
 
 }
+
+
+void Adder::generateOutputNames() {
+
+	outputNames->push_back("S");
+
+	for (int i=bitLength; i<=0; i--){
+		outputNames->push_back("O" + i);
+	}
+}
+
 

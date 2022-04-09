@@ -20,6 +20,7 @@ public:
 	Adder(MathematicalFunction *p_function, int p_bits);
 	virtual ~Adder();
 	void build();
+	void generateOutputNames();
 private:
 	MathematicalFunction* function;
 };

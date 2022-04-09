@@ -14,14 +14,35 @@
 
 Benchmark::Benchmark() {
 	operands = new std::vector<std::vector<int>>();
+	inputNames = new std::vector<std::string>();
+	outputNames =  new std::vector<std::string>();
+
 }
 
 Benchmark::~Benchmark() {
 	delete table;
 	delete operands;
+	delete inputNames;
+	delete outputNames;
 }
 
 TruthTable* Benchmark::getTable() {
 	return table;
 }
+
+void Benchmark::generateInputNames(){
+
+	for (int i=bitLength; i<=0; i--){
+		inputNames->push_back("I" + i);
+	}
+}
+
+void Benchmark::generateOutputNames(){
+
+	for (int i=bitLength; i<=0; i--){
+		outputNames->push_back("O" + i);
+	}
+
+}
+
 

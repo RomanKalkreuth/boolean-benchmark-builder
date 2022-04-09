@@ -10,7 +10,7 @@
 
 #include "AdderCarry.h"
 
-AdderCarry::AdderCarry(int p_bits, MathematicalFunction *p_function) {
+AdderCarry::AdderCarry(int p_bits, MathematicalFunction* p_function) {
 
 	if (p_bits > 0 ){
 		bitLength = p_bits;
