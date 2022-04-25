@@ -1,7 +1,5 @@
 /*
- *  Adder.h
- *
- *  Created on: 06.01.2022
+ *  Class Adder implements the digital adder function without carry.
  *
  *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
  *         	https://orcid.org/0000-0003-1449-5131,
@@ -20,6 +18,7 @@ public:
 	Adder(MathematicalFunction *p_function, int p_bits);
 	virtual ~Adder();
 	void build();
+	void generateInputNames();
 	void generateOutputNames();
 private:
 	MathematicalFunction* function;

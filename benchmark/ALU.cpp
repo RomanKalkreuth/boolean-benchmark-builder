@@ -1,7 +1,5 @@
 /*
- * ALU.cpp
- *
- *  Created on: 09.12.2021
+ * 	Class ALU implements the arithmetic logic unit benchmark.
  *
  *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
  *         	https://orcid.org/0000-0003-1449-5131,
@@ -42,11 +40,6 @@ ALU::ALU(std::vector<Function*> *p_functions, int p_bit_length) {
 	inputs = 2 * bitLength + opcodeBits;
 	outputs = bitLength + 1;
 
-	std::vector<std::string> *inputNames = new std::vector<std::string> { "M2",
-			"M1", "M0", "I2", "I1", "I0" };
-	std::vector<std::string> *outputNames = new std::vector<std::string> { "S",
-			"O2", "O1", "O0" };
-
 	std::vector<int> *separators = new std::vector<int>();
 
 	int sep1 = opcodeBits - 1;
@@ -56,6 +49,9 @@ ALU::ALU(std::vector<Function*> *p_functions, int p_bit_length) {
 	separators->push_back(sep1);
 	separators->push_back(sep2);
 	separators->push_back(sep3);
+
+	generateInputNames();
+	generateOutputNames();
 
 	table = new TruthTable(inputs, outputs, inputNames, outputNames,
 			separators);
@@ -70,7 +66,7 @@ ALU::ALU(std::vector<Function*> *p_functions, int p_bit_length) {
 
 	chunkSize = table->getRows() / numFunctions;
 
-	if(chunkSize < 32){
+	if (chunkSize < 32) {
 		table->setChunkSize(chunkSize);
 	}
 
@@ -153,6 +149,29 @@ void ALU::build() {
 		}
 
 	}
+}
 
+void ALU::generateOutputNames() {
+
+	outputNames->push_back("S");
+
+	for (int i = bitLength - 1; i >= 0; i--) {
+		outputNames->push_back("O" + std::to_string(i));
+	}
+}
+
+void ALU::generateInputNames() {
+
+	for (int i = bitLength - 1; i >= 0; i--) {
+		inputNames->push_back("M" + std::to_string(i));
+	}
+
+	for (int i = bitLength - 1; i >= 0; i--) {
+		inputNames->push_back("B" + std::to_string(i));
+	}
+
+	for (int i = bitLength - 1; i >= 0; i--) {
+		inputNames->push_back("A" + std::to_string(i));
+	}
 }
 

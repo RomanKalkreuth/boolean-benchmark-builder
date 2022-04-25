@@ -1,7 +1,5 @@
 /*
- *  Adder.h
- *
- *  Created on: 06.01.2022
+ *  Class AdderCarry implements the digital adder function with carry.
  *
  *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
  *         	https://orcid.org/0000-0003-1449-5131,
@@ -20,6 +18,8 @@ class AdderCarry : public Benchmark {
 public:
 	AdderCarry(int p_bits, MathematicalFunction* p_function);
 	virtual ~AdderCarry();
+	void generateInputNames();
+	void generateOutputNames();
 	void build();
 
 private:

@@ -2,8 +2,7 @@
 // Name        : boolean-benchmark-builder.cpp
 // Author      : Roman Kalkreuth
 // Version     : 0.1 Beta
-// Copyright   : 
-// Description :
+// Description : C++ based project for the automatic build of Boolean benchmarks
 //============================================================================
 
 #include <iostream>
@@ -41,11 +40,12 @@ int main() {
 	ALU *alu = new ALU(functions, 3);
 	alu->build();
 	TruthTable *table = alu->getTable();
-	table->printHumanReadable();
+	table->printHeader();
+	//table->printHumanReadable();
 
 	std::vector<std::vector<unsigned int>>* compressed = table->compress();
 
-	table->printCompressedTable(compressed);
+	//table->printCompressedTable(compressed);
 
 	return 0;
 }

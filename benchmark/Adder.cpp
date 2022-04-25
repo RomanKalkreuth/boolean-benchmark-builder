@@ -1,5 +1,5 @@
 /*
- * Adder.cpp
+ *  Class Adder implements the digital adder function without carry.
  *
  *  Created on: 06.01.2022
  *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
@@ -30,18 +30,16 @@ Adder::Adder(MathematicalFunction *p_function, int p_bit_length) {
 	generateInputNames();
 	generateOutputNames();
 
-	std::vector<int>* separators = new std::vector<int>{2};
+	std::vector<int> *separators = new std::vector<int> { 2 };
 
-	table = new TruthTable(inputs, outputs, inputNames, outputNames, separators);
+	table = new TruthTable(inputs, outputs, inputNames, outputNames,
+			separators);
 }
 
 Adder::~Adder() {
 	delete function;
 }
 
-/**
- *
- */
 void Adder::build() {
 
 	std::vector<int> op1(bitLength);
@@ -88,7 +86,7 @@ void Adder::build() {
 		std::reverse(sum->begin(), sum->end());
 
 		coutVal = carry->at(0);
-			table->set(i, coutPos, coutVal);
+		table->set(i, coutPos, coutVal);
 
 		for (int j = 0; j < bitLength; j++) {
 			s = sum->at(j);
@@ -96,17 +94,23 @@ void Adder::build() {
 		}
 
 	}
-
 }
 
-
 void Adder::generateOutputNames() {
-
-	outputNames->push_back("S");
-
-	for (int i=bitLength; i<=0; i--){
-		outputNames->push_back("O" + i);
+	outputNames->push_back("C");
+	for (int i = bitLength - 1; i >= 0; i--) {
+		outputNames->push_back("S" + std::to_string(i));
 	}
 }
 
+void Adder::generateInputNames() {
+
+	for (int i = bitLength - 1; i >= 0; i--) {
+		outputNames->push_back("B" + std::to_string(i));
+	}
+
+	for (int i = bitLength - 1; i >= 0; i--) {
+		outputNames->push_back("A" + std::to_string(i));
+	}
+}
 

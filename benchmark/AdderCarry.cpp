@@ -1,7 +1,6 @@
 /*
- * Adder.cpp
+ * 	Class AdderCarry implements the digital adder function with carry.
  *
- *  Created on: 06.01.2022
  *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
  *         	https://orcid.org/0000-0003-1449-5131,
  *          https://ls11-www.cs.tu-dortmund.de/staff/kalkreuth,
@@ -10,9 +9,9 @@
 
 #include "AdderCarry.h"
 
-AdderCarry::AdderCarry(int p_bits, MathematicalFunction* p_function) {
+AdderCarry::AdderCarry(int p_bits, MathematicalFunction *p_function) {
 
-	if (p_bits > 0 ){
+	if (p_bits > 0) {
 		bitLength = p_bits;
 	} else {
 		throw std::invalid_argument("Number of bits must be greater zero!");
@@ -36,9 +35,6 @@ AdderCarry::~AdderCarry() {
 	delete function;
 }
 
-/**
- *
- */
 void AdderCarry::build() {
 
 	std::vector<int> op1;
@@ -96,5 +92,23 @@ void AdderCarry::build() {
 		table->set(i, coutPos, coutVal);
 	}
 
+}
+
+void AdderCarry::generateOutputNames() {
+	for (int i = bitLength - 1; i >= 0; i--) {
+		outputNames->push_back("S" + std::to_string(i));
+	}
+	outputNames->push_back("Co");
+}
+
+void AdderCarry::generateInputNames() {
+	for (int i = bitLength - 1; i >= 0; i--) {
+		outputNames->push_back("B" + std::to_string(i));
+	}
+
+	for (int i = bitLength - 1; i >= 0; i--) {
+		outputNames->push_back("A" + std::to_string(i));
+	}
+	outputNames->push_back("Ci");
 }
 

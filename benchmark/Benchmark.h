@@ -1,13 +1,12 @@
 /*
- * Benchmark.h
- *
- *  Created on: 09.12.2021
+ * 	Base class for the implementation of Boolean functions.
  *
  *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
  *         	https://orcid.org/0000-0003-1449-5131,
  *          https://ls11-www.cs.tu-dortmund.de/staff/kalkreuth,
  *         	https://twitter.com/RomanKalkreuth
  */
+
 
 #ifndef BENCHMARK_BENCHMARK_H_
 #define BENCHMARK_BENCHMARK_H_
@@ -35,6 +34,8 @@ public:
 	int outputs;
 	int bitLength;
 
+	// Function for the construction of the truth table
+	// of the respective function.
 	virtual void build() = 0;
 
 	virtual void generateInputNames();

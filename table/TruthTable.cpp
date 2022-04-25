@@ -166,25 +166,36 @@ void TruthTable::print() {
 	}
 }
 
-/**
- *
- */
-
-//TODO: Revise method
 void TruthTable::printHeader() {
+
+	if (separators == nullptr) {
+		throw std::runtime_error("Separators is NULL!");
+	}
 
 	if (inputNames == nullptr || outputNames == nullptr) {
 		throw std::runtime_error("Header is NULL!");
 	}
 
-	for (int i = 0; i < inputs; i++) {
-		std::cout << inputNames->at(i) << " ";
-	}
+	std::vector<int>::iterator it = separators->begin();
 
-	for (int i = 0; i < outputs; i++) {
-		std::cout << outputNames->at(i) << " ";
-	}
+	for (int i = 0; i < cols; i++) {
 
+		if (i < inputs) {
+			std::cout << inputNames->at(i) << " ";
+		} else if (i == inputs) {
+			std::cout << " : ";
+		} else {
+			std::cout << outputNames->at(i - inputs) << " ";
+		}
+
+		if (it != separators->end()) {
+			if (i == *it) {
+				std::cout << " ";
+				++it;
+			}
+		}
+
+	}
 	std::cout << std::endl;
 
 }
@@ -192,19 +203,19 @@ void TruthTable::printHeader() {
 void TruthTable::printCompressedTable(
 		std::vector<std::vector<unsigned int>> *comprTable) {
 
-	std::vector<unsigned int>* vec = &comprTable->at(0);
+	std::vector<unsigned int> *vec = &comprTable->at(0);
 
 	int rows = vec->size();
 	int cols = comprTable->size();
 
 	for (int i = 0; i < rows; i++) {
-		for (int j=0; j < cols; j++) {
+		for (int j = 0; j < cols; j++) {
 			std::cout << (*comprTable)[j][i] << " ";
-			if(j==inputs-1){
-				std::cout<<"  ";
+			if (j == inputs - 1) {
+				std::cout << "  ";
 			}
 		}
-		std::cout<<std::endl;
+		std::cout << std::endl;
 	}
 
 }
@@ -220,7 +231,6 @@ std::vector<std::vector<unsigned int>>* TruthTable::compress() {
 		}
 		chunk = true;
 	}
-
 
 	unsigned int val = 0;
 	std::vector<std::vector<unsigned int>> *comprTable = new std::vector<

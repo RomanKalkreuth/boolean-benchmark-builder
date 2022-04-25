@@ -1,8 +1,10 @@
 /*
- * ALU.h
+ * 	Class ALU implements the arithmetic logic unit benchmark.
  *
- *  Created on: 09.12.2021
- *  Author: Roman Kalkreuth
+ *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
+ *         	https://orcid.org/0000-0003-1449-5131,
+ *          https://ls11-www.cs.tu-dortmund.de/staff/kalkreuth,
+ *         	https://twitter.com/RomanKalkreuth
  */
 
 #ifndef BENCHMARK_ALU_H_
@@ -20,7 +22,7 @@
 
 class ALU : public Benchmark{
 public:
-	ALU(std::vector<Function*>* p_functions, int p_bits);
+	ALU(std::vector<Function*>* p_functions, int p_bit_length);
 	virtual ~ALU();
 
 	std::vector<Function*>* functions;
@@ -29,6 +31,8 @@ public:
 	int opcodeBits;
 	int numFunctions;
 
+	void generateInputNames();
+	void generateOutputNames();
 	void build();
 
 };
