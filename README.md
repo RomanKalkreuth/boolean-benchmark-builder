@@ -2,7 +2,7 @@
 
 ## About 
 
-Boolean Benchmark Builder is a C++ tool to enable the automatic generation of Boolean function benchmarks. Boolean function benchmarks are used to evaluate and analyze methods that are applied to program synthesis and evolvable hardware. The motivation for the development of the Boolean Benchmark Builder was the proposal and evaluation of two advanced phenotypic operators, called duplication and inversion, for the Genetic Programming variant Cartesian Genetic Programming. The Boolean Benchmark Builder was used to generate the truth table of the arithmetic logical unit benchmark. This benchmark is described in the corresponding publication of this work (see reference below). 
+Boolean Benchmark Builder is a C++ tool that aims on the automatic generation of Boolean function benchmarks. Boolean function benchmarks are used to evaluate and analyze methods that are applied to program synthesis and evolvable hardware. The motivation for the development of the Boolean Benchmark Builder was the proposal and evaluation of two advanced phenotypic operators, called duplication and inversion, for the Genetic Programming variant Cartesian Genetic Programming in recent work which will be presentend at the Genetic and Evolutionary Computation Conference in Boston this year. The proposed methods have been evaluated on a diverse set of Boolean function benchmarks. The Boolean Benchmark Builder was used to generate the truth table of an arithmetic logical unit benchmark. This benchmark is described in the corresponding publication of this work (see reference below). 
 
 ## Cartesian Genetic Programming 
 
