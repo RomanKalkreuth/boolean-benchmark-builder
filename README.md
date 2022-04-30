@@ -38,6 +38,11 @@ or in BibTex:
 }
 
 ```
+
+## Requirements 
+
+C++11
+
 ## Links 
 
 Cartesian Genetic Programming website: https://www.cartesiangp.com/
