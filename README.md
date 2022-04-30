@@ -32,3 +32,10 @@ or in BibTex:
 }
 
 ```
+## Links 
+
+Cartesian Genetic Programming website: https://www.cartesiangp.com/
+
+ECJ GitHub Repository: https://github.com/GMUEClab/ecj
+
+Revised ECJ Contrib Package: https://github.com/RomanKalkreuth/ecj-contrib-cgp-revised
