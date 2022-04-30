@@ -1,7 +1,5 @@
 /*
- * SUB.h
- *
- *  Created on: 03.01.2022
+ * 	Implements binary subtraction
  *
  *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
  *         	https://orcid.org/0000-0003-1449-5131,

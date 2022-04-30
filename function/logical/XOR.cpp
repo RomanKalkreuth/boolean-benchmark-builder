@@ -1,7 +1,5 @@
 /*
- * XOR.cpp
- *
- *  Created on: 27.12.2021
+ * 	Implements bitwise exclusive or
  *
  *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
  *         	https://orcid.org/0000-0003-1449-5131,

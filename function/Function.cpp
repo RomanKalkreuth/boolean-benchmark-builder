@@ -1,7 +1,5 @@
 /*
- * Function.cpp
- *
- *  Created on: 09.12.2021
+ * 	Abstract base class for logical and mathematical functions.
  *
  *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
  *         	https://orcid.org/0000-0003-1449-5131,

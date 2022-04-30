@@ -1,9 +1,8 @@
 /*
- * TruthTable.cpp
+ * Class for the representation of the truth table and
+ * the corresponding functionality.
  *
- *  Created on: 09.12.2021
- *
- *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
+ * Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
  *         	https://orcid.org/0000-0003-1449-5131,
  *          https://ls11-www.cs.tu-dortmund.de/staff/kalkreuth,
  *         	https://twitter.com/RomanKalkreuth
@@ -12,7 +11,8 @@
 #include "TruthTable.h"
 
 /**
- *
+ * Constructor that creates a dummy table based on the
+ * number of inputs and outputs
  */
 TruthTable::TruthTable(int p_inputs, int p_outputs) {
 
@@ -38,6 +38,12 @@ TruthTable::TruthTable(int p_inputs, int p_outputs) {
 	init(rows, cols, outputs, table);
 }
 
+/**
+ * Constructor that creates a dummy table based on the
+ * number of inputs and outputs.
+ * This constructors also includes the input and output names
+ * as well as the separators for formatting
+ */
 TruthTable::TruthTable(int p_inputs, int p_outputs,
 		std::vector<std::string> *p_input_names,
 		std::vector<std::string> *p_output_names,
@@ -65,7 +71,8 @@ TruthTable::TruthTable(int p_inputs, int p_outputs,
 }
 
 /**
- *
+ * Constructor that creates a dummy table based on the
+ * number of bits
  */
 TruthTable::TruthTable(int p_bits) {
 	cols = p_bits;
@@ -74,6 +81,7 @@ TruthTable::TruthTable(int p_bits) {
 	init(rows, cols, table);
 }
 
+
 TruthTable::~TruthTable() {
 	delete table;
 	delete inputNames;
@@ -81,16 +89,9 @@ TruthTable::~TruthTable() {
 	delete separators;
 }
 
-int TruthTable::at(int i, int j) const {
-	return (*table)[i][j];
-}
-
-void TruthTable::set(int i, int j, int val) {
-	(*table)[i][j] = val;
-}
 
 /**
- *
+ * Initializes the values only for the inputs of the table
  */
 void TruthTable::init(int rows, int cols, int outputs,
 		std::vector<std::vector<int> > *table) {
@@ -108,7 +109,7 @@ void TruthTable::init(int rows, int cols, int outputs,
 }
 
 /**
- *
+ * Initializes the values for the whole table
  */
 void TruthTable::init(int rows, int cols,
 		std::vector<std::vector<int> > *table) {
@@ -126,7 +127,7 @@ void TruthTable::init(int rows, int cols,
 }
 
 /**
- *
+ * Format and print the table readable for human beings.
  */
 void TruthTable::printHumanReadable() {
 
@@ -137,7 +138,7 @@ void TruthTable::printHumanReadable() {
 		std::vector<int>::iterator it = separators->begin();
 
 		for (int j = 0; j < cols; j++) {
-			std::cout << (*table)[i][j];
+			std::cout << (*table)[i][j] << "  ";
 
 			if (it != separators->end()) {
 				if (j == *it) {
@@ -147,7 +148,7 @@ void TruthTable::printHumanReadable() {
 			}
 
 			if ((j + 1) == inputs) {
-				std::cout << " : ";
+				std::cout << " :  ";
 			}
 		}
 		std::cout << std::endl;
@@ -155,7 +156,7 @@ void TruthTable::printHumanReadable() {
 }
 
 /**
- *
+ * Raw print of the table.
  */
 void TruthTable::print() {
 	for (int i = 0; i < rows; i++) {
@@ -166,6 +167,10 @@ void TruthTable::print() {
 	}
 }
 
+
+/**
+ * Print only the header
+ */
 void TruthTable::printHeader() {
 
 	if (separators == nullptr) {
@@ -178,14 +183,15 @@ void TruthTable::printHeader() {
 
 	std::vector<int>::iterator it = separators->begin();
 
-	for (int i = 0; i < cols; i++) {
+
+	for (int i = 0; i <= cols; i++) {
 
 		if (i < inputs) {
 			std::cout << inputNames->at(i) << " ";
 		} else if (i == inputs) {
 			std::cout << " : ";
 		} else {
-			std::cout << outputNames->at(i - inputs) << " ";
+			std::cout << outputNames->at(i - inputs -1) << " ";
 		}
 
 		if (it != separators->end()) {
@@ -200,6 +206,9 @@ void TruthTable::printHeader() {
 
 }
 
+/**
+ * Print the compressed truth table
+ */
 void TruthTable::printCompressedTable(
 		std::vector<std::vector<unsigned int>> *comprTable) {
 
@@ -220,6 +229,9 @@ void TruthTable::printCompressedTable(
 
 }
 
+/**
+ * Compress the table
+ */
 std::vector<std::vector<unsigned int>>* TruthTable::compress() {
 
 	bool chunk = false;
@@ -271,7 +283,7 @@ std::vector<std::vector<unsigned int>>* TruthTable::compress() {
 }
 
 /**
- *
+ * Trims the table by erasing rows from the beginning
  */
 void TruthTable::trim(int row) {
 
@@ -281,6 +293,24 @@ void TruthTable::trim(int row) {
 	rows = table->size();
 }
 
+
+
+/*
+ * Getter and setter for elements of the table.
+ */
+int TruthTable::at(int i, int j) const {
+	return (*table)[i][j];
+}
+
+
+void TruthTable::set(int i, int j, int val) {
+	(*table)[i][j] = val;
+}
+
+
+/**
+ * Getter and setter for attributes of the class
+ */
 int TruthTable::getCols() const {
 	return cols;
 }

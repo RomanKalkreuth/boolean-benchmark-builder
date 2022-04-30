@@ -1,7 +1,5 @@
 /*
- * AND.cpp
- *
- *  Created on: 22.12.2021
+ * 	Implements bitwise AND
  *
  *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
  *         	https://orcid.org/0000-0003-1449-5131,

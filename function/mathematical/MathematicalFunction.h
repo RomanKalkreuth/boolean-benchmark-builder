@@ -1,10 +1,11 @@
 /*
- * MathematicalFunction.h
+ * 	Abstract base class for mathematcal functions.
  *
- *  Created on: 10.01.2022
- *      Author: roman
+ *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
+ *         	https://orcid.org/0000-0003-1449-5131,
+ *          https://ls11-www.cs.tu-dortmund.de/staff/kalkreuth,
+ *         	https://twitter.com/RomanKalkreuth
  */
-
 #ifndef FUNCTION_MATHEMATICAL_MATHEMATICALFUNCTION_H_
 #define FUNCTION_MATHEMATICAL_MATHEMATICALFUNCTION_H_
 

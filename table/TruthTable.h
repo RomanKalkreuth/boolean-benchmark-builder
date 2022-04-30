@@ -1,7 +1,9 @@
 /*
- * TruthTable.h
+/*
  *
- *  Created on: 09.12.2021
+ * Class for the representation of the truth table and
+ * the corresponding functionality.
+ *
  *
  *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
  *         	https://orcid.org/0000-0003-1449-5131,

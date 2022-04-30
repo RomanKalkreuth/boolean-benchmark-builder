@@ -37,15 +37,18 @@ int main() {
 	functions->push_back(funcAdd);
 	functions->push_back(funcSub);
 
-	ALU *alu = new ALU(functions, 3);
+	ALU *alu = new ALU(functions, 4);
 	alu->build();
 	TruthTable *table = alu->getTable();
 	table->printHeader();
-	//table->printHumanReadable();
+	table->printHumanReadable();
+
+	std::cout << std::endl;
+	std::cout << std::endl;
 
 	std::vector<std::vector<unsigned int>>* compressed = table->compress();
 
-	//table->printCompressedTable(compressed);
+	table->printCompressedTable(compressed);
 
 	return 0;
 }

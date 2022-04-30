@@ -153,7 +153,7 @@ void ALU::build() {
 
 void ALU::generateOutputNames() {
 
-	outputNames->push_back("S");
+	outputNames->push_back("S ");
 
 	for (int i = bitLength - 1; i >= 0; i--) {
 		outputNames->push_back("O" + std::to_string(i));
@@ -162,7 +162,7 @@ void ALU::generateOutputNames() {
 
 void ALU::generateInputNames() {
 
-	for (int i = bitLength - 1; i >= 0; i--) {
+	for (int i = opcodeBits - 1; i >= 0; i--) {
 		inputNames->push_back("M" + std::to_string(i));
 	}
 
