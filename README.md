@@ -6,7 +6,7 @@ Boolean Benchmark Builder is a C++ tool that aims on the automatic generation of
 
 ## Cartesian Genetic Programming 
 
-Genetic programming is a heuristic method inspired by neo-Darwinian evolution for commonly used for program synthesis. Cartesian Genetic Programming is a variant of Genetic Programming which uses a graph representation model. Cartesian Genetic Programming is predominantly applied to the synthesis of Boolean programs and evolvable hardware.
+Genetic Programming is a heuristic method inspired by neo-Darwinian evolution that is commonly used for program synthesis. Cartesian Genetic Programming is a variant of Genetic Programming which uses an acyclic graph representation model. Cartesian Genetic Programming is predominantly applied to the synthesis of Boolean programs and to evolvable hardware.
 
 ## Citing this work
 
