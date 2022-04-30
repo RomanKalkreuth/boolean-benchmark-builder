@@ -1,5 +1,5 @@
 /*
- * Implements a binary addition with carry
+ * Implements binary addition with carry
  *
  *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
  *         	https://orcid.org/0000-0003-1449-5131,

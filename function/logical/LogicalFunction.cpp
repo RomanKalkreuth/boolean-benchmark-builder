@@ -7,7 +7,6 @@
  *         	https://twitter.com/RomanKalkreuth
  */
 
-
 #include "LogicalFunction.h"
 
 LogicalFunction::LogicalFunction() {

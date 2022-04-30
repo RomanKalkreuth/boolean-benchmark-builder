@@ -1,11 +1,12 @@
 /*
- * 	Abstract base class for mathematcal functions.
+ * 	Abstract base class for mathematical functions.
  *
  *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
  *         	https://orcid.org/0000-0003-1449-5131,
  *          https://ls11-www.cs.tu-dortmund.de/staff/kalkreuth,
  *         	https://twitter.com/RomanKalkreuth
  */
+
 #ifndef FUNCTION_MATHEMATICAL_MATHEMATICALFUNCTION_H_
 #define FUNCTION_MATHEMATICAL_MATHEMATICALFUNCTION_H_
 

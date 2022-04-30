@@ -1,5 +1,5 @@
 /*
- * 	Abstract base class for mathemaatical functions.
+ * 	Abstract base class for mathematical functions.
  *
  *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
  *         	https://orcid.org/0000-0003-1449-5131,
