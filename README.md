@@ -2,7 +2,7 @@
 
 ## About 
 
-Boolean Benchmark Builder is a C++ tool that aims on the automatic generation of Boolean function benchmarks. Boolean function benchmarks are used to evaluate and analyze methods that are applied to program synthesis and evolvable hardware. The motivation for the development of the Boolean Benchmark Builder was the proposal and evaluation of two advanced phenotypic operators, called duplication and inversion, for the Genetic Programming variant Cartesian Genetic Programming. The corresponding work will be presentend at the Genetic and Evolutionary Computation Conference (GECCO) in Boston this year and the proposed methods have been evaluated on a diverse Boolean function benchmark set. The Boolean Benchmark Builder was used to generate the truth table of an arithmetic logical unit benchmark which is described in the corresponding publication of this work (see reference below). 
+Boolean Benchmark Builder is a C++ tool that aims on the automatic generation of Boolean function benchmarks. Boolean function benchmarks are used to evaluate and analyze methods that are applied to program synthesis and evolvable hardware. The motivation for the development of the Boolean Benchmark Builder was the proposal and evaluation of two advanced phenotypic operators, called duplication and inversion, for the Genetic Programming variant Cartesian Genetic Programming. The corresponding work will be presentend at the Genetic and Evolutionary Computation Conference (GECCO) in Boston this year and the proposed methods have been evaluated on a diverse Boolean function benchmark set. The Boolean Benchmark Builder was used to generate the truth table of an arithmetic logical unit (ALU) benchmark which is described in the corresponding publication of this work (see reference below). 
 
 ## Cartesian Genetic Programming 
 
@@ -41,12 +41,9 @@ or in BibTex:
 
 ## Requirements 
 
-C++11
+C++ >= 11
 
 ## Links 
 
 Cartesian Genetic Programming website: https://www.cartesiangp.com/
 
-ECJ GitHub Repository: https://github.com/GMUEClab/ecj
-
-Revised ECJ Contrib Package: https://github.com/RomanKalkreuth/ecj-contrib-cgp-revised
