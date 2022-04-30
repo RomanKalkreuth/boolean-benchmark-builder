@@ -2,6 +2,10 @@
 
 ## About 
 
+## Cartesian Genetic Programming 
+
+Cartesian Genetic Programming is a heuristic method inspired by neo-Darwinian evolution for evolving graphs. CGP is known for its application to Boolean program synthesis and evolvable hardware.
+
 ## Citing this work
 
 The preferred way to cite this work is
