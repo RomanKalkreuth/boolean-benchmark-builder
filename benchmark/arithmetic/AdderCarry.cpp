@@ -1,27 +1,16 @@
 /*
  * 	Class AdderCarry implements the digital adder function with carry.
  *
- *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
+ *  Author: Roman Kalkreuth,
  *         	https://orcid.org/0000-0003-1449-5131,
- *          https://ls11-www.cs.tu-dortmund.de/staff/kalkreuth,
+ *          https://www.researchgate.net/profile/Roman-Kalkreuth,
  *         	https://twitter.com/RomanKalkreuth
  */
 
 #include "AdderCarry.h"
 
-AdderCarry::AdderCarry(int p_bits, MathematicalFunction *p_function) {
-
-	if (p_bits > 0) {
-		bitLength = p_bits;
-	} else {
-		throw std::invalid_argument("Number of bits must be greater zero!");
-	}
-
-	if (p_function != nullptr) {
-		function = p_function;
-	} else {
-		throw std::invalid_argument("Function is NULL!");
-	}
+AdderCarry::AdderCarry(ArithmeticFunction *p_function, int p_bit_length) :
+	ArithmeticBenchmark (p_function, p_bit_length) {
 
 	inputs = bitLength * 2 + 1;
 	outputs = bitLength + 1;
@@ -29,10 +18,6 @@ AdderCarry::AdderCarry(int p_bits, MathematicalFunction *p_function) {
 	function = p_function;
 
 	table = new TruthTable(inputs, outputs);
-}
-
-AdderCarry::~AdderCarry() {
-	delete function;
 }
 
 void AdderCarry::build() {
@@ -71,6 +56,9 @@ void AdderCarry::build() {
 			op2.push_back(val2);
 		}
 
+		std::reverse(op1.begin(), op1.end());
+		std::reverse(op2.begin(), op2.end());
+
 		cinVal = table->at(i, cinPos);
 		op3.push_back(cinVal);
 
@@ -82,6 +70,8 @@ void AdderCarry::build() {
 
 		sum = &result->at(0);
 		carry = &result->at(1);
+
+		std::reverse(sum->begin(), sum->end());
 
 		for (int j = 0; j < bitLength; j++) {
 			s = sum->at(j);

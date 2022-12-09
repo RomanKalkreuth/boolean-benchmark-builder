@@ -1,26 +1,26 @@
 /*
  *  Class Multiplier implements the digital multiplier function.
  *
- *  Created on: 06.01.2022
- *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
+ *  Author: Roman Kalkreuth,
  *         	https://orcid.org/0000-0003-1449-5131,
- *          https://ls11-www.cs.tu-dortmund.de/staff/kalkreuth,
+ *          https://www.researchgate.net/profile/Roman-Kalkreuth,
  *         	https://twitter.com/RomanKalkreuth
  */
 
 #ifndef BENCHMARK_MULTIPLIER_H_
 #define BENCHMARK_MULTIPLIER_H_
 
-#include "Benchmark.h"
-#include "../function/mathematical/MUL.h"
+#include "../../function/arithmetic/ArithmeticFunction.h"
+#include "../Benchmark.h"
+#include "ArithmeticBenchmark.h"
 
 class Multiplier: public Benchmark {
 public:
-	Multiplier();
+	Multiplier(ArithmeticFunction* p_function, int p_bits);
 	virtual ~Multiplier();
 	void build();
 private:
-	MUL* mul;
+	ArithmeticFunction* function;
 };
 
 #endif /* BENCHMARK_MULTIPLIER_H_ */

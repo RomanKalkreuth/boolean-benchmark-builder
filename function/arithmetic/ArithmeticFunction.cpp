@@ -1,27 +1,27 @@
 /*
  * 	Abstract base class for mathematical functions.
  *
- *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
+ *  Author: Roman Kalkreuth,
  *         	https://orcid.org/0000-0003-1449-5131,
- *          https://ls11-www.cs.tu-dortmund.de/staff/kalkreuth,
+ *          https://www.researchgate.net/profile/Roman-Kalkreuth,
  *         	https://twitter.com/RomanKalkreuth
  */
 
-#include "MathematicalFunction.h"
+#include "ArithmeticFunction.h"
 
-MathematicalFunction::MathematicalFunction() {
+ArithmeticFunction::ArithmeticFunction() {
 
 }
 
-MathematicalFunction::~MathematicalFunction() {
+ArithmeticFunction::~ArithmeticFunction() {
 }
 
-std::vector<std::vector<int>>* MathematicalFunction::execute(
+std::vector<std::vector<int>>* ArithmeticFunction::execute(
 		std::vector<std::vector<int>> *ops) {
 	return ops;
 }
 
-std::vector<std::vector<int>>* MathematicalFunction::add(std::vector<int> *bin1,
+std::vector<std::vector<int>>* ArithmeticFunction::add(std::vector<int> *bin1,
 		std::vector<int> *bin2) {
 	int dim = bin1->size();
 	int a = 0;
@@ -49,7 +49,7 @@ std::vector<std::vector<int>>* MathematicalFunction::add(std::vector<int> *bin1,
 	return result;
 }
 
-std::vector<std::vector<int>>* MathematicalFunction::addc(std::vector<int> *bin1,
+std::vector<std::vector<int>>* ArithmeticFunction::addc(std::vector<int> *bin1,
 		std::vector<int> *bin2, int carryIn) {
 
 	std::vector<int> sum;

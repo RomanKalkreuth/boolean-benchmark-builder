@@ -1,5 +1,5 @@
 /*
- * 	Implements bitwise OR
+ * Implements binary addition with carry
  *
  *  Author: Roman Kalkreuth,
  *         	https://orcid.org/0000-0003-1449-5131,
@@ -8,17 +8,19 @@
  */
 
 
-#ifndef FUNCTION_OR_H_
-#define FUNCTION_OR_H_
+#ifndef FUNCTION_ARITHMETIC_ADDC_H_
+#define FUNCTION_ARITHMETIC_ADDC_H_
 
-#include "LogicalFunction.h"
+#include <iostream>
+#include <algorithm>
 
-class OR: public LogicalFunction {
+#include "ArithmeticFunction.h"
+
+class ADDC: public ArithmeticFunction {
 public:
-	OR();
-	virtual ~OR();
-	int execute(int *ops);
+	ADDC();
+	virtual ~ADDC();
 	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>>* ops);
 };
 
-#endif /* FUNCTION_OR_H_ */
+#endif /* FUNCTION_ARITHMETIC_ADDC_H_ */

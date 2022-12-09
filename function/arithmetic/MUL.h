@@ -1,5 +1,5 @@
 /*
- * 	Implements bitwise exclusive or
+ * 	Implements binary multiplication
  *
  *  Author: Roman Kalkreuth,
  *         	https://orcid.org/0000-0003-1449-5131,
@@ -7,17 +7,17 @@
  *         	https://twitter.com/RomanKalkreuth
  */
 
-#ifndef FUNCTION_XOR_H_
-#define FUNCTION_XOR_H_
 
-#include "LogicalFunction.h"
+#ifndef FUNCTION_ARITHMETIC_MUL_H_
+#define FUNCTION_ARITHMETIC_MUL_H_
 
-class XOR: public LogicalFunction {
+#include "ArithmeticFunction.h"
+
+class MUL: public ArithmeticFunction {
 public:
-	XOR();
-	virtual ~XOR();
-	int execute(int *ops);
+	MUL();
+	virtual ~MUL();
 	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>>* ops);
 };
 
-#endif /* FUNCTION_XOR_H_ */
+#endif /* FUNCTION_ARITHMETIC_MUL_H_ */

@@ -1,28 +1,16 @@
 /*
  *  Class Adder implements the digital adder function without carry.
  *
- *  Created on: 06.01.2022
- *  Author: Roman Kalkreuth, roman.kalkreuth@tu-dortmund.de,
+ *  Author: Roman Kalkreuth,
  *         	https://orcid.org/0000-0003-1449-5131,
- *          https://ls11-www.cs.tu-dortmund.de/staff/kalkreuth,
+ *          https://www.researchgate.net/profile/Roman-Kalkreuth,
  *         	https://twitter.com/RomanKalkreuth
  */
 
 #include "Adder.h"
 
-Adder::Adder(MathematicalFunction *p_function, int p_bit_length) {
-
-	if (p_bit_length > 0) {
-		bitLength = p_bit_length;
-	} else {
-		throw std::invalid_argument("Number of bits must be greater zero!");
-	}
-
-	if (p_function != nullptr) {
-		function = p_function;
-	} else {
-		throw std::invalid_argument("Function is NULL!");
-	}
+Adder::Adder(ArithmeticFunction *p_function, int p_bit_length) :
+	ArithmeticBenchmark (p_function, p_bit_length) {
 
 	inputs = bitLength * 2;
 	outputs = bitLength + 1;
@@ -34,10 +22,6 @@ Adder::Adder(MathematicalFunction *p_function, int p_bit_length) {
 
 	table = new TruthTable(inputs, outputs, inputNames, outputNames,
 			separators);
-}
-
-Adder::~Adder() {
-	delete function;
 }
 
 void Adder::build() {
@@ -78,6 +62,7 @@ void Adder::build() {
 
 		operands->push_back(op1);
 		operands->push_back(op2);
+
 		result = function->execute(operands);
 
 		sum = &result->at(0);

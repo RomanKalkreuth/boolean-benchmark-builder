@@ -1,5 +1,5 @@
 /*
- * 	Implements bitwise exclusive or
+ * 	Implements binary addition
  *
  *  Author: Roman Kalkreuth,
  *         	https://orcid.org/0000-0003-1449-5131,
@@ -7,17 +7,16 @@
  *         	https://twitter.com/RomanKalkreuth
  */
 
-#ifndef FUNCTION_XOR_H_
-#define FUNCTION_XOR_H_
+#ifndef FUNCTION_ARITHMETIC_ADD_H_
+#define FUNCTION_ARITHMETIC_ADD_H_
 
-#include "LogicalFunction.h"
+#include "ArithmeticFunction.h"
 
-class XOR: public LogicalFunction {
+class ADD: public ArithmeticFunction {
 public:
-	XOR();
-	virtual ~XOR();
-	int execute(int *ops);
+	ADD();
+	virtual ~ADD();
 	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>>* ops);
 };
 
-#endif /* FUNCTION_XOR_H_ */
+#endif /* FUNCTION_ARITHMETIC_ADD_H_ */

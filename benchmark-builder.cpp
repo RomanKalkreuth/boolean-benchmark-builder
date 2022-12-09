@@ -1,8 +1,12 @@
 //============================================================================
-// Name        : boolean-benchmark-builder.cpp
+// Project     : Boolean Benchmark Builder
 // Author      : Roman Kalkreuth
+//         		 https://orcid.org/0000-0003-1449-5131,
+//          	 https://www.researchgate.net/profile/Roman-Kalkreuth,
+//         		https://twitter.com/RomanKalkreuth
 // Version     : 0.1 Beta
-// Description : C++ based project for the automatic build of Boolean benchmarks
+// Description : C++ based project for the automatic build of Boolean function benchmarks
+// License 	   :
 //============================================================================
 
 #include <iostream>
@@ -10,12 +14,12 @@
 #include <vector>
 #include <string>
 
-#include "benchmark/ALU.h"
-#include "benchmark/Adder.h"
-#include "benchmark/AdderCarry.h"
+#include "benchmark/mixed/ALU.h"
+#include "benchmark/arithmetic/Adder.h"
+#include "benchmark/arithmetic/AdderCarry.h"
+#include "function/arithmetic/ADD.h"
+#include "function/arithmetic/SUB.h"
 #include "table/TruthTable.h"
-#include "function/mathematical/SUB.h"
-#include "function/mathematical/ADD.h"
 #include "function/logical/AND.h"
 #include "function/logical/OR.h"
 #include "function/logical/XOR.h"
@@ -37,9 +41,18 @@ int main() {
 	functions->push_back(funcAdd);
 	functions->push_back(funcSub);
 
+
+
+	Adder *adder = new Adder(funcAdd,2);
+
+	/*
+
 	ALU *alu = new ALU(functions, 4);
+
 	alu->build();
+
 	TruthTable *table = alu->getTable();
+
 	table->printHeader();
 	table->printHumanReadable();
 
@@ -48,7 +61,7 @@ int main() {
 
 	std::vector<std::vector<unsigned int>>* compressed = table->compress();
 
-	table->printCompressedTable(compressed);
+	table->printCompressedTable(compressed); */
 
 	return 0;
 }
