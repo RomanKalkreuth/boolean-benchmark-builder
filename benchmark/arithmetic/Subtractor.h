@@ -10,18 +10,16 @@
 #define BENCHMARK_SUBTRACTOR_H_
 
 #include "../../function/arithmetic/ArithmeticFunction.h"
+#include "../../function/arithmetic/SUB.h"
 #include "../Benchmark.h"
 #include "ArithmeticBenchmark.h"
 
-class Subtractor: public Benchmark {
+class Subtractor : public ArithmeticBenchmark {
 public:
 	Subtractor(ArithmeticFunction *p_function, int p_bit_length);
-	virtual ~Subtractor();
-	void build();
-	void generateInputNames();
-	void generateOutputNames();
-private:
-	ArithmeticFunction* function;
+	void build() override;
+	void generateInputNames() override;
+	void generateOutputNames() override;
 };
 
 #endif /* BENCHMARK_SUBTRACTOR_H_ */

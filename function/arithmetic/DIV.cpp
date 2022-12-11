@@ -1,5 +1,5 @@
 /*
- * 	Abstract base class for mathematical functions.
+ * 	Implements binary divison
  *
  *  Author: Roman Kalkreuth,
  *         	https://orcid.org/0000-0003-1449-5131,
@@ -7,15 +7,19 @@
  *         	https://twitter.com/RomanKalkreuth
  */
 
-#include "ArithmeticFunction.h"
+#include "DIV.h"
 
-ArithmeticFunction::ArithmeticFunction() {
+DIV::DIV() {
+	// TODO Auto-generated constructor stub
 
 }
 
-ArithmeticFunction::~ArithmeticFunction() {
+DIV::~DIV() {
+
 }
 
+std::vector<std::vector<int>>* DIV::execute(
+		std::vector<std::vector<int>> *ops) {
 
-
+}
 

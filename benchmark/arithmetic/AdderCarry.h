@@ -11,15 +11,16 @@
 #define BENCHMARK_ADDERCARRY_H_
 
 #include "../../function/arithmetic/ArithmeticFunction.h"
+#include "../../function/arithmetic/ADDC.h"
 #include "../Benchmark.h"
 #include "ArithmeticBenchmark.h"
 
 class AdderCarry : public ArithmeticBenchmark {
 public:
 	AdderCarry(ArithmeticFunction* p_function, int p_bits);
-	void generateInputNames();
-	void generateOutputNames();
-	void build();
+	void build() override;
+	void generateInputNames() override;
+	void generateOutputNames() override;
 
 private:
 	ArithmeticFunction* function;

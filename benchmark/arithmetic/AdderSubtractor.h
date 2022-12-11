@@ -12,14 +12,15 @@
 
 #include "../../function/arithmetic/ArithmeticFunction.h"
 #include "../Benchmark.h"
+#include "ArithmeticBenchmark.h"
 
-class AdderSubtractor : Benchmark {
+
+class AdderSubtractor : ArithmeticBenchmark {
 public:
 	AdderSubtractor(ArithmeticFunction *p_function, int p_bit_length);
-	virtual ~AdderSubtractor();
-	void build();
-	void generateInputNames();
-	void generateOutputNames();
+	void build() override;
+	void generateInputNames() override;
+	void generateOutputNames() override;
 private:
 	ArithmeticFunction* function;
 

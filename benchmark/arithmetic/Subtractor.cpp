@@ -10,12 +10,22 @@
 #include "Subtractor.h"
 
 Subtractor::Subtractor(ArithmeticFunction *p_function, int p_bit_length) :
-		ArithmeticBenchmark(p_function, p_bit_length) {
+ArithmeticBenchmark(p_function, p_bit_length) {
+
+	if (typeid(*p_function) != typeid(SUB)) {
+		throw std::invalid_argument("SUB function is required by this class!");
+	}
 
 	inputs = bitLength * 2;
 	outputs = bitLength + 1;
 
-	table = new TruthTable(inputs, outputs);
+	generateInputNames();
+	generateOutputNames();
+
+	std::vector<int> *separators = new std::vector<int> { 2 };
+
+	table = new TruthTable(inputs, outputs, inputNames, outputNames,
+			separators);
 
 }
 
@@ -28,6 +38,7 @@ void Subtractor::build() {
 	std::vector<int> *borrow;
 
 	int d = 0;
+
 	int rows = table->getRows();
 	int cols = table->getCols();
 
@@ -50,7 +61,29 @@ void Subtractor::build() {
 			op2.push_back(val2);
 		}
 
+		std::reverse(op1.begin(), op1.end());
+		std::reverse(op2.begin(), op2.end());
+
+		operands->push_back(op1);
+		operands->push_back(op2);
+
+		result = function->execute(operands);
+
+		diff = &result->at(0);
+		borrow = &result->at(1);
+
+		std::reverse(diff->begin(), diff->end());
+
+		boutVal = borrow->at(0);
+		table->set(i, boutPos, boutVal);
+
+		for (int j = 0; j < bitLength; j++) {
+			d = diff->at(j);
+			table->set(i, j + diffPos, d);
+		}
+
 	}
+
 }
 
 void Subtractor::generateOutputNames() {
@@ -63,10 +96,10 @@ void Subtractor::generateOutputNames() {
 void Subtractor::generateInputNames() {
 
 	for (int i = bitLength - 1; i >= 0; i--) {
-		inputNames->push_back("X" + std::to_string(i));
+		inputNames->push_back("A" + std::to_string(i));
 	}
 
 	for (int i = bitLength - 1; i >= 0; i--) {
-		inputNames->push_back("Y" + std::to_string(i));
+		inputNames->push_back("B" + std::to_string(i));
 	}
 }

@@ -10,7 +10,11 @@
 #include "AdderCarry.h"
 
 AdderCarry::AdderCarry(ArithmeticFunction *p_function, int p_bit_length) :
-	ArithmeticBenchmark (p_function, p_bit_length) {
+		ArithmeticBenchmark(p_function, p_bit_length) {
+
+	if (typeid(*p_function) != typeid(ADDC)) {
+		throw std::invalid_argument("ADDC function is required by this class!");
+	}
 
 	inputs = bitLength * 2 + 1;
 	outputs = bitLength + 1;
@@ -92,13 +96,14 @@ void AdderCarry::generateOutputNames() {
 }
 
 void AdderCarry::generateInputNames() {
+
 	for (int i = bitLength - 1; i >= 0; i--) {
-		outputNames->push_back("B" + std::to_string(i));
+		inputNames->push_back("A" + std::to_string(i));
 	}
 
 	for (int i = bitLength - 1; i >= 0; i--) {
-		outputNames->push_back("A" + std::to_string(i));
+		inputNames->push_back("B" + std::to_string(i));
 	}
-	outputNames->push_back("Ci");
+	inputNames->push_back("Ci");
 }
 

@@ -16,7 +16,9 @@ class ADD: public ArithmeticFunction {
 public:
 	ADD();
 	virtual ~ADD();
-	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>>* ops);
+	std::vector<std::vector<int>>* execute(std::vector<int> *bin1,
+			std::vector<int> *bin2);
+	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>> *ops);
 };
 
 #endif /* FUNCTION_ARITHMETIC_ADD_H_ */

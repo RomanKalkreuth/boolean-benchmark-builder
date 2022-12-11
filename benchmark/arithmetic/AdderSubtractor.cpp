@@ -9,25 +9,17 @@
 
 #include "AdderSubtractor.h"
 
-AdderSubtractor::AdderSubtractor(ArithmeticFunction *p_function, int p_bit_length) {
-	if (p_bit_length > 0) {
-		bitLength = p_bit_length;
-	} else {
-		throw std::invalid_argument("Number of bits must be greater zero!");
-	}
-
-	if (p_function != nullptr) {
-		function = p_function;
-	} else {
-		throw std::invalid_argument("Function is NULL!");
-	}
+AdderSubtractor::AdderSubtractor(ArithmeticFunction *p_function,
+		int p_bit_length) :
+		ArithmeticBenchmark(p_function, p_bit_length) {
 
 	inputs = bitLength * 2;
 	outputs = bitLength + 1;
 
-	std::vector<int>* separators = new std::vector<int>{2};
+	std::vector<int> *separators = new std::vector<int> { 2 };
 
-	table = new TruthTable(inputs, outputs, inputNames, outputNames, separators);
+	table = new TruthTable(inputs, outputs, inputNames, outputNames,
+			separators);
 
 }
 
@@ -40,9 +32,5 @@ void AdderSubtractor::generateOutputNames() {
 
 void AdderSubtractor::generateInputNames() {
 
-}
-
-AdderSubtractor::~AdderSubtractor() {
-	delete function;
 }
 

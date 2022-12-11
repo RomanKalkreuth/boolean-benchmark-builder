@@ -11,14 +11,17 @@
 #define BENCHMARK_MULTIPLIER_H_
 
 #include "../../function/arithmetic/ArithmeticFunction.h"
+#include "../../function/arithmetic/MUL.h"
 #include "../Benchmark.h"
 #include "ArithmeticBenchmark.h"
 
-class Multiplier: public Benchmark {
+class Multiplier: public ArithmeticBenchmark {
 public:
 	Multiplier(ArithmeticFunction* p_function, int p_bits);
 	virtual ~Multiplier();
-	void build();
+	void build() override;
+	void generateInputNames() override;
+	void generateOutputNames() override;
 private:
 	ArithmeticFunction* function;
 };

@@ -189,7 +189,7 @@ void TruthTable::printHeader() {
 		if (i < inputs) {
 			std::cout << inputNames->at(i) << " ";
 		} else if (i == inputs) {
-			std::cout << " : ";
+			std::cout << " :  ";
 		} else {
 			std::cout << outputNames->at(i - inputs -1) << " ";
 		}

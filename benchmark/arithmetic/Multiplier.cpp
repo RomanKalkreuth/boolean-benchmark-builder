@@ -10,15 +10,36 @@
 #include "Multiplier.h"
 
 Multiplier::Multiplier(ArithmeticFunction *p_function, int p_bit_length) :
-ArithmeticBenchmark (p_function, p_bit_length) {
+		ArithmeticBenchmark(p_function, p_bit_length) {
+
+	if (typeid(*p_function) != typeid(MUL)) {
+			throw std::invalid_argument("MUL function is required by this class!");
+	}
 
 }
 
 Multiplier::~Multiplier() {
 }
 
-
 void Multiplier::build() {
+
+}
+
+void Multiplier::generateOutputNames() {
+	for (int i = bitLength - 1; i >= 0; i--) {
+		outputNames->push_back("C" + std::to_string(i));
+	}
+}
+
+void Multiplier::generateInputNames() {
+
+	for (int i = bitLength - 1; i >= 0; i--) {
+		inputNames->push_back("A" + std::to_string(i));
+	}
+
+	for (int i = bitLength - 1; i >= 0; i--) {
+		inputNames->push_back("B" + std::to_string(i));
+	}
 
 }
 

@@ -16,9 +16,7 @@ class ArithmeticFunction:public Function {
 public:
 	ArithmeticFunction();
 	virtual ~ArithmeticFunction();
-	std::vector<std::vector<int>>*  add(std::vector<int> *bin1, std::vector<int> *bin2);
-	std::vector<std::vector<int>>*  addc(std::vector<int> *bin1, std::vector<int> *bin2, int carry);
-	virtual std::vector<std::vector<int>>* execute(std::vector<std::vector<int>>* ops);
+	virtual std::vector<std::vector<int>>* execute(std::vector<std::vector<int>>* ops) = 0;
 };
 
 #endif /* FUNCTION_ARITHMETIC_ARITHMETICFUNCTION_H_ */

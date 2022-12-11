@@ -10,50 +10,28 @@
 #include "../arithmetic/SUB.h"
 
 SUB::SUB() {
+	funcAdd = new ADD();
+	complement = new Complement();
 }
 
 SUB::~SUB() {
+	delete funcAdd;
 }
 
-std::vector<int>* SUB::complement(std::vector<int> *bin) {
-	int dim = bin->size();
-	int x;
-	int x_;
-
-	std::vector<int> one(dim, 0);
-	std::vector<int> *cmpl;
-
-	std::vector<std::vector<int>>* result;
-
-	one.at(0) = 1;
-
-	for (int i = 0; i < dim; i++) {
-		x = bin->at(i);
-		x_ = (x == 0 ? 1 : 0);
-		bin->at(i) = x_;
-	}
-
-	result = add(bin, &one);
-
-	cmpl =  new std::vector<int>(result->at(0));
-
-	delete result;
-
-	return cmpl;
-}
 
 std::vector<std::vector<int>>* SUB::execute(
 		std::vector<std::vector<int>> *ops) {
 
 	this->setup();
-	std::vector<int>* op1 =  &ops->at(0);
-	std::vector<int>* op2 =  &ops->at(1);
+
+	std::vector<int> *bin1 = &ops->at(0);
+	std::vector<int> *bin2 = &ops->at(1);
 
 	std::vector<int> *cmpl;
 
-	cmpl = complement(op2);
+	cmpl = complement->complement(bin2);
 
-	result = add(op1,cmpl);
+	result = funcAdd->execute(bin1,cmpl);
 
 	delete cmpl;
 
