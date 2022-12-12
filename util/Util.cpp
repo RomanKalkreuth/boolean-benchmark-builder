@@ -9,15 +9,6 @@
 
 #include "Util.h"
 
-Util::Util() {
-
-}
-
-Util::~Util() {
-
-}
-
-
 unsigned long Util::pow(int x, unsigned int p)
 {
   if (p == 0) return 1;

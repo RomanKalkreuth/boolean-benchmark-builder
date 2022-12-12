@@ -9,14 +9,6 @@
 
 #include "../arithmetic/ADD.h"
 
-ADD::ADD() {
-
-}
-
-ADD::~ADD() {
-
-}
-
 std::vector<std::vector<int>>* ADD::execute(
 		std::vector<std::vector<int>> *ops) {
 

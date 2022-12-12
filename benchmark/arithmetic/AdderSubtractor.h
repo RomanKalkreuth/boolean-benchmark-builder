@@ -18,6 +18,7 @@
 class AdderSubtractor : ArithmeticBenchmark {
 public:
 	AdderSubtractor(ArithmeticFunction *p_function, int p_bit_length);
+	~AdderSubtractor() = default;
 	void build() override;
 	void generateInputNames() override;
 	void generateOutputNames() override;

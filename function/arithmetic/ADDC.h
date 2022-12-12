@@ -18,8 +18,8 @@
 
 class ADDC: public ArithmeticFunction {
 public:
-	ADDC();
-	virtual ~ADDC();
+	ADDC() = default;
+	virtual ~ADDC() = default;
 	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>> *ops);
 };
 

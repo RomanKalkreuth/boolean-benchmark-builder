@@ -14,8 +14,8 @@
 
 class ADD: public ArithmeticFunction {
 public:
-	ADD();
-	virtual ~ADD();
+	ADD() = default;
+	virtual ~ADD() = default;
 	std::vector<std::vector<int>>* execute(std::vector<int> *bin1,
 			std::vector<int> *bin2);
 	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>> *ops);

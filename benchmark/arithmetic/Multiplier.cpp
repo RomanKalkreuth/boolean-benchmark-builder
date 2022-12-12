@@ -18,9 +18,6 @@ Multiplier::Multiplier(ArithmeticFunction *p_function, int p_bit_length) :
 
 }
 
-Multiplier::~Multiplier() {
-}
-
 void Multiplier::build() {
 
 }

@@ -17,6 +17,7 @@
 class Subtractor : public ArithmeticBenchmark {
 public:
 	Subtractor(ArithmeticFunction *p_function, int p_bit_length);
+	~Subtractor() = default;
 	void build() override;
 	void generateInputNames() override;
 	void generateOutputNames() override;

@@ -18,6 +18,7 @@
 class AdderCarry : public ArithmeticBenchmark {
 public:
 	AdderCarry(ArithmeticFunction* p_function, int p_bits);
+	~AdderCarry() = default;
 	void build() override;
 	void generateInputNames() override;
 	void generateOutputNames() override;

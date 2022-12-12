@@ -15,7 +15,7 @@
 class ArithmeticFunction:public Function {
 public:
 	ArithmeticFunction();
-	virtual ~ArithmeticFunction();
+	virtual ~ArithmeticFunction() = default;
 	virtual std::vector<std::vector<int>>* execute(std::vector<std::vector<int>>* ops) = 0;
 };
 

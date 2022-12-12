@@ -38,6 +38,14 @@ TruthTable::TruthTable(int p_inputs, int p_outputs) {
 	init(rows, cols, outputs, table);
 }
 
+TruthTable::~TruthTable() {
+	delete table;
+	delete inputNames;
+	delete outputNames;
+	delete separators;
+}
+
+
 /**
  * Constructor that creates a dummy table based on the
  * number of inputs and outputs.
@@ -79,14 +87,6 @@ TruthTable::TruthTable(int p_bits) {
 	rows = std::pow(2.0, cols);
 	table = new std::vector<std::vector<int> >(rows, std::vector<int>(cols, 0));
 	init(rows, cols, table);
-}
-
-
-TruthTable::~TruthTable() {
-	delete table;
-	delete inputNames;
-	delete outputNames;
-	delete separators;
 }
 
 

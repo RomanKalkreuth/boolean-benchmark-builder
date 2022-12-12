@@ -1,8 +1,10 @@
 /*
- * COMPL.cpp
+ * 	Implements binary complement
  *
- *  Created on: 11.12.2022
- *      Author: roman
+ *  Author: Roman Kalkreuth,
+ *         	https://orcid.org/0000-0003-1449-5131,
+ *          https://www.researchgate.net/profile/Roman-Kalkreuth,
+ *         	https://twitter.com/RomanKalkreuth
  */
 
 #include "Complement.h"

@@ -18,7 +18,7 @@
 class Multiplier: public ArithmeticBenchmark {
 public:
 	Multiplier(ArithmeticFunction* p_function, int p_bits);
-	virtual ~Multiplier();
+	virtual ~Multiplier() = default;
 	void build() override;
 	void generateInputNames() override;
 	void generateOutputNames() override;

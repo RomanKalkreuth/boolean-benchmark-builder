@@ -9,13 +9,6 @@
 
 #include "../arithmetic/ADDC.h"
 
-ADDC::ADDC() {
-}
-
-ADDC::~ADDC() {
-
-}
-
 /**
  *   sum = a xor b xor c
  *   carry = ab+bc+ca

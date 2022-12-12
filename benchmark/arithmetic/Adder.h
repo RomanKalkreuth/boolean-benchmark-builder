@@ -18,6 +18,7 @@
 class Adder: public ArithmeticBenchmark {
 public:
 	Adder(ArithmeticFunction *p_function, int p_bit_length);
+	~Adder() = default;
 	void build() override;
 	void generateInputNames() override;
 	void generateOutputNames() override;

@@ -13,8 +13,6 @@ ArithmeticFunction::ArithmeticFunction() {
 
 }
 
-ArithmeticFunction::~ArithmeticFunction() {
-}
 
 
 

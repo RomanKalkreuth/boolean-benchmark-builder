@@ -20,8 +20,8 @@
 
 class Util {
 public:
-	Util();
-	virtual ~Util();
+	Util() = default;
+	virtual ~Util()  = default;
 	static unsigned long pow(int x, unsigned int p);
 	static int binToInt(std::vector<int>* bin);
 	static long binToLong(std::vector<int>* bin);
