@@ -183,7 +183,6 @@ void TruthTable::printHeader() {
 
 	std::vector<int>::iterator it = separators->begin();
 
-
 	for (int i = 0; i <= cols; i++) {
 
 		if (i < inputs) {
@@ -191,7 +190,7 @@ void TruthTable::printHeader() {
 		} else if (i == inputs) {
 			std::cout << " :  ";
 		} else {
-			std::cout << outputNames->at(i - inputs -1) << " ";
+			std::cout << outputNames->at(i - inputs - 1) << " ";
 		}
 
 		if (it != separators->end()) {

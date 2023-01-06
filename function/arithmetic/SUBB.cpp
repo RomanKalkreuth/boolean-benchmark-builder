@@ -1,30 +1,31 @@
 /*
- * 	Implements binary subtraction
+ * SUBB.cpp
  *
- *  Author: Roman Kalkreuth,
- *         	https://orcid.org/0000-0003-1449-5131,
- *          https://www.researchgate.net/profile/Roman-Kalkreuth,
- *         	https://twitter.com/RomanKalkreuth
+ *  Created on: 06.01.2023
+ *      Author: roman
  */
 
-#include "../arithmetic/SUB.h"
+#include "SUBB.h"
 
-std::vector<std::vector<int>>* SUB::execute(
+std::vector<std::vector<int>>* SUBB::execute(
 		std::vector<std::vector<int>> *ops) {
 
 	this->setup();
 
 	std::vector<int> *bin1 = &ops->at(0);
 	std::vector<int> *bin2 = &ops->at(1);
+	std::vector<int> *bin3 = &ops->at(2);
+
+	int borrowIn = bin3->at(0);
 
 	int dim = bin1->size();
 	int x = 0;
 	int y = 0;
 	int d = 0;
-	int b = 0;
+	int b = borrowIn;
 
 	std::vector<int> diff;
-	std::vector<int> borrow;
+	std::vector<int> borrowOut;
 
 	std::vector<std::vector<int>> *result = new std::vector<std::vector<int>>();
 
@@ -36,11 +37,10 @@ std::vector<std::vector<int>>* SUB::execute(
 		diff.push_back(d);
 	}
 
-	borrow.push_back(b);
+	borrowOut.push_back(b);
 
 	result->push_back(diff);
-	result->push_back(borrow);
+	result->push_back(borrowOut);
 
 	return result;
 }
-

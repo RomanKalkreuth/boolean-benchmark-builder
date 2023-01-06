@@ -43,6 +43,7 @@ std::vector<std::vector<int>>* ADD::execute(std::vector<int> *bin1,
 		c = (a & b) | (c & (a ^ b));
 		sum.push_back(s);
 	}
+
 	carry.push_back(c);
 
 	result->push_back(sum);

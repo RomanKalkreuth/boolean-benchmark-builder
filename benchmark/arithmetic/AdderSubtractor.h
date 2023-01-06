@@ -13,17 +13,20 @@
 #include "../../function/arithmetic/ArithmeticFunction.h"
 #include "../Benchmark.h"
 #include "ArithmeticBenchmark.h"
+#include "../../function/arithmetic/ADD.h"
+#include "../../function/arithmetic/SUB.h"
 
-
-class AdderSubtractor : ArithmeticBenchmark {
+class AdderSubtractor : public ArithmeticBenchmark {
 public:
-	AdderSubtractor(ArithmeticFunction *p_function, int p_bit_length);
-	~AdderSubtractor() = default;
+	AdderSubtractor(ArithmeticFunction *p_function,int p_bit_length);
+	virtual ~AdderSubtractor() = default;
 	void build() override;
 	void generateInputNames() override;
 	void generateOutputNames() override;
 private:
-	ArithmeticFunction* function;
+
+	int chunkSize;
+	int numFunctions;
 
 };
 

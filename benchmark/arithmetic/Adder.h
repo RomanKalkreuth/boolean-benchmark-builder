@@ -7,8 +7,8 @@
  *         	https://twitter.com/RomanKalkreuth
  */
 
-#ifndef BENCHMARK_ADDERCARRY_H_
-#define BENCHMARK_ADDERCARRY_H_
+#ifndef BENCHMARK_ADDER_H_
+#define BENCHMARK_ADDER_H_
 
 #include "../../function/arithmetic/ArithmeticFunction.h"
 #include "../../function/arithmetic/ADD.h"

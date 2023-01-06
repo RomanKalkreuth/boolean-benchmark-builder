@@ -22,7 +22,7 @@ Adder::Adder(ArithmeticFunction *p_function, int p_bit_length) :
 	generateInputNames();
 	generateOutputNames();
 
-	std::vector<int> *separators = new std::vector<int> { 2 };
+	std::vector<int> *separators = new std::vector<int> { };
 
 	table = new TruthTable(inputs, outputs, inputNames, outputNames,
 			separators);

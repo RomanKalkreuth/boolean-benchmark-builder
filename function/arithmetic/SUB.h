@@ -11,19 +11,14 @@
 #define FUNCTION_ARITHMETIC_SUB_H_
 
 #include "ArithmeticFunction.h"
-#include "ADD.h"
-#include "complement/Complement.h"
 
 class SUB: public ArithmeticFunction  {
 public:
-	SUB();
-	virtual ~SUB();
+	SUB() = default;
+	virtual ~SUB() = default;
 	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>> *ops);
 	std::vector<std::vector<int>>* execute(std::vector<int> *bin1,
 					std::vector<int> *bin2);
-private:
-	ADD* funcAdd;
-	Complement* complement;
 };
 
 #endif /* FUNCTION_ARITHMETIC_SUB_H_ */

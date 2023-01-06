@@ -38,8 +38,8 @@ std::vector<std::vector<int>>* ADDC::execute(
 		a = bin1->at(i);
 		b = bin2->at(i);
 		s = (a ^ b) ^ c;
-		sum.push_back(s);
 		c = (a & b) | (c & (a ^ b));
+		sum.push_back(s);
 	}
 
 	carryOut.push_back(c);

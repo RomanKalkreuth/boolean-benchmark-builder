@@ -1,19 +1,17 @@
 /*
- * 	Class AdderCarry implements the digital adder function with carry.
+ * SubtractorBorrow.cpp
  *
- *  Author: Roman Kalkreuth,
- *         	https://orcid.org/0000-0003-1449-5131,
- *          https://www.researchgate.net/profile/Roman-Kalkreuth,
- *         	https://twitter.com/RomanKalkreuth
+ *  Created on: 06.01.2023
+ *      Author: roman
  */
 
-#include "AdderCarry.h"
+#include "SubtractorBorrow.h"
 
-AdderCarry::AdderCarry(ArithmeticFunction *p_function, int p_bit_length) :
-		ArithmeticBenchmark(p_function, p_bit_length) {
+SubtractorBorrow::SubtractorBorrow(ArithmeticFunction *p_function,
+		int p_bit_length) : ArithmeticBenchmark(p_function, p_bit_length){
 
-	if (typeid(*p_function) != typeid(ADDC)) {
-		throw std::invalid_argument("ADDC function is required by this class!");
+	if (typeid(*p_function) != typeid(SUBB)) {
+		throw std::invalid_argument("SUBB function is required by this class!");
 	}
 
 	inputs = bitLength * 2 + 1;
@@ -28,25 +26,26 @@ AdderCarry::AdderCarry(ArithmeticFunction *p_function, int p_bit_length) :
 			separators);
 }
 
-void AdderCarry::build() {
+void SubtractorBorrow::build() {
 
 	std::vector<int> op1;
 	std::vector<int> op2;
 	std::vector<int> op3;
 
-	std::vector<int> *sum;
-	std::vector<int> *carry;
+	std::vector<int> *diff;
+	std::vector<int> *borrow;
 
 	int s = 0;
 	int rows = table->getRows();
 	int cols = table->getCols();
 
-	int cinVal = 0;
-	int coutVal = 0;
+	int binVal = 0;
+	int boutVal = 0;
 
-	int cinPos = 2 * bitLength;
-	int coutPos = cinPos + 1;
-	int outputPos = coutPos + 1;
+	int binPos = 2 * bitLength;
+	int boutPos = cols - 1;
+
+	int outputPos = 2 * bitLength + 1;
 
 	for (int i = 0; i < rows; i++) {
 
@@ -66,8 +65,8 @@ void AdderCarry::build() {
 		std::reverse(op1.begin(), op1.end());
 		std::reverse(op2.begin(), op2.end());
 
-		cinVal = table->at(i, cinPos);
-		op3.push_back(cinVal);
+		binVal = table->at(i, binPos);
+		op3.push_back(binVal);
 
 		operands->push_back(op1);
 		operands->push_back(op2);
@@ -75,31 +74,30 @@ void AdderCarry::build() {
 
 		result = function->execute(operands);
 
-		sum = &result->at(0);
-		carry = &result->at(1);
+		diff = &result->at(0);
+		borrow = &result->at(1);
 
-		std::reverse(sum->begin(), sum->end());
+		std::reverse(diff->begin(), diff->end());
 
 		for (int j = 0; j < bitLength; j++) {
-			s = sum->at(j);
+			s = diff->at(j);
 			table->set(i, j + outputPos, s);
 		}
 
-		coutVal = carry->at(0);
-		table->set(i, coutPos, coutVal);
+		boutVal = borrow->at(0);
+		table->set(i, boutPos, boutVal);
 	}
 
 }
 
-void AdderCarry::generateOutputNames() {
-	outputNames->push_back("Co");
-
+void SubtractorBorrow::generateOutputNames() {
 	for (int i = bitLength - 1; i >= 0; i--) {
 		outputNames->push_back("S" + std::to_string(i));
 	}
+	outputNames->push_back("Bo");
 }
 
-void AdderCarry::generateInputNames() {
+void SubtractorBorrow::generateInputNames() {
 
 	for (int i = bitLength - 1; i >= 0; i--) {
 		inputNames->push_back("A" + std::to_string(i));
@@ -108,6 +106,7 @@ void AdderCarry::generateInputNames() {
 	for (int i = bitLength - 1; i >= 0; i--) {
 		inputNames->push_back("B" + std::to_string(i));
 	}
-	inputNames->push_back("Ci");
+	inputNames->push_back("Bi");
 }
+
 

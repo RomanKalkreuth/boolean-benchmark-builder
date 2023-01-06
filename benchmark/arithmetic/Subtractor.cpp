@@ -22,7 +22,7 @@ ArithmeticBenchmark(p_function, p_bit_length) {
 	generateInputNames();
 	generateOutputNames();
 
-	std::vector<int> *separators = new std::vector<int> { 2 };
+	std::vector<int> *separators = new std::vector<int> { bitLength - 1  };
 
 	table = new TruthTable(inputs, outputs, inputNames, outputNames,
 			separators);
@@ -40,9 +40,8 @@ void Subtractor::build() {
 	int d = 0;
 
 	int rows = table->getRows();
-	int cols = table->getCols();
 
-	int diffPos = 2 * bitLength;
+	int diffPos = 2 * bitLength + 1;
 
 	int boutVal = 0;
 	int boutPos = 2 * bitLength;
@@ -87,10 +86,11 @@ void Subtractor::build() {
 }
 
 void Subtractor::generateOutputNames() {
+	outputNames->push_back("B");
+
 	for (int i = bitLength - 1; i >= 0; i--) {
 		outputNames->push_back("D" + std::to_string(i));
 	}
-	outputNames->push_back("Bo");
 }
 
 void Subtractor::generateInputNames() {

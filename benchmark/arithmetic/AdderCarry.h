@@ -22,9 +22,6 @@ public:
 	void build() override;
 	void generateInputNames() override;
 	void generateOutputNames() override;
-
-private:
-	ArithmeticFunction* function;
 };
 
 #endif /* BENCHMARK_ADDERCARRY_H_ */

@@ -23,6 +23,7 @@ std::vector<int>* Complement::complement(std::vector<int> *bin) {
 	int x_;
 
 	std::vector<int> one(dim, 0);
+	std::vector<int> *temp = new std::vector<int>(); ;
 	std::vector<int> *cmpl;
 
 	std::vector<std::vector<int>> *result;
@@ -32,13 +33,14 @@ std::vector<int>* Complement::complement(std::vector<int> *bin) {
 	for (int i = 0; i < dim; i++) {
 		x = bin->at(i);
 		x_ = (x == 0 ? 1 : 0);
-		bin->at(i) = x_;
+		temp->push_back(x_);
 	}
 
-	result = funcAdd->execute(bin, &one);
+	result = funcAdd->execute(temp, &one);
 
 	cmpl = new std::vector<int>(result->at(0));
 
+	delete temp;
 	delete result;
 
 	return cmpl;
