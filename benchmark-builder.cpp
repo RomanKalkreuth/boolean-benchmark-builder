@@ -13,6 +13,7 @@
 #include <cmath>
 #include <vector>
 #include <string>
+#include <memory>
 
 #include "benchmark/mixed/ALU.h"
 #include "benchmark/arithmetic/Adder.h"
@@ -21,6 +22,8 @@
 #include "benchmark/arithmetic/SubtractorBorrow.h"
 #include "benchmark/arithmetic/AdderSubtractor.h"
 
+#include "benchmark/logical/combinational/Demultiplexer.h"
+#include "benchmark/logical/comparative/Comparator.h"
 
 #include "function/Function.h"
 
@@ -34,6 +37,8 @@
 #include "function/arithmetic/SUBB.h"
 
 #include "table/TruthTable.h"
+
+#include "util/Util.h"
 
 
 int main() {
@@ -56,31 +61,38 @@ int main() {
 	functions->push_back(funcAdd);
 	functions->push_back(funcSub);
 
-	Adder *adder = new Adder(funcAdd, 2);
+	std::unique_ptr<Adder> adder = std::make_unique<Adder>(funcAdd, 2);
 	adder->build();
 
-	AdderCarry* adderCarry = new AdderCarry(funcAddc, 2);
+	std::unique_ptr<AdderCarry> adderCarry = std::make_unique<AdderCarry>(funcAddc, 2);
 	adderCarry->build();
 
-	Subtractor *subtractor = new Subtractor(funcSub, 2);
+	std::unique_ptr<Subtractor> subtractor = std::make_unique<Subtractor>(funcSub, 2);
 	subtractor->build();
 
-	SubtractorBorrow *subtractorBorrow = new SubtractorBorrow(funcSubb, 4);
+	std::unique_ptr<SubtractorBorrow> subtractorBorrow = std::make_unique<SubtractorBorrow>(funcSubb, 4);
 	subtractorBorrow->build();
 
-	AdderSubtractor* addSub = new AdderSubtractor(funcAddc, 4);
+	std::unique_ptr<AdderSubtractor> addSub = std::make_unique<AdderSubtractor>(funcAddc, 4);
 	addSub->build();
 
-	TruthTable *table = addSub->getTable();
+	std::unique_ptr<Demultiplexer> demux = std::make_unique<Demultiplexer>(4);
+	demux->build();
 
-	table->printHeader();
+	std::unique_ptr<Comparator> comparator = std::make_unique<Comparator>(3);
+	comparator->build();
+
+	std::shared_ptr<TruthTable> table = comparator->getTable();
+
+	//table->printHeader();
 	table->printHumanReadable();
 
-	delete adder;
-	delete adderCarry;
-	delete subtractor;
-	delete subtractorBorrow;
-	delete addSub;
+
+	for(Function* f : *functions) {
+		delete f;
+	}
+
+	delete functions;
 
 	return 0;
 }

@@ -17,15 +17,18 @@
 #include <iostream>
 #include <bitset>
 #include <algorithm>
+#include <cassert>
 
 class Util {
 public:
 	Util() = default;
 	virtual ~Util()  = default;
 	static unsigned long pow(int x, unsigned int p);
-	static int binToInt(std::vector<int>* bin);
+	static int binToInt(std::vector<int> &bin);
 	static long binToLong(std::vector<int>* bin);
 	static std::vector<int>* intToBin(int dec);
+	static unsigned long factorial(unsigned int n);
+	static unsigned long binomCoeff(unsigned int n, unsigned int k);
 	static int ctoi(char c);
 };
 

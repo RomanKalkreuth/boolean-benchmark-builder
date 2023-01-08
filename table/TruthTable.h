@@ -20,6 +20,7 @@
 #include <string>
 #include <iostream>
 #include <exception>
+#include <memory>
 
 #include "../util/Util.h"
 
@@ -32,7 +33,7 @@ private:
 	int rows;
 	int chunkSize;
 
-	std::vector<int>* separators;
+	std::shared_ptr<std::vector<int>> separators;
 	std::vector<std::vector<int> > *table;
 	std::vector<std::string>* inputNames;
 	std::vector<std::string>* outputNames;
@@ -41,7 +42,7 @@ public:
 
 	TruthTable(int p_inputs, int p_outputs);
 	TruthTable(int p_inputs, int p_outputs, std::vector<std::string>* p_input_names,
-			std::vector<std::string>* p_output_names, std::vector<int>* p_separators);
+			std::vector<std::string>* p_output_names, std::shared_ptr<std::vector<int>> p_separators);
 
 	TruthTable(int p_bits);
 	virtual ~TruthTable();

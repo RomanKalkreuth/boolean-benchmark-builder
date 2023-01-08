@@ -7,7 +7,6 @@
  *         	https://twitter.com/RomanKalkreuth
  */
 
-
 #ifndef BENCHMARK_BENCHMARK_H_
 #define BENCHMARK_BENCHMARK_H_
 
@@ -16,32 +15,34 @@
 #include <vector>
 #include <exception>
 #include <iostream>
-
+#include <memory>
 
 class Benchmark {
+protected:
+	virtual void generateInputNames();
+	virtual void generateOutputNames();
+
+	std::shared_ptr<TruthTable> table;
+	std::vector<std::vector<int>> *operands;
+	std::vector<std::vector<int>> *result;
+
+	std::vector<std::string> *inputNames;
+	std::vector<std::string> *outputNames;
+
+	int numInputs;
+	int numOutputs;
+	int bitLength;
+
+	std::shared_ptr<std::vector<int>> separators;
+
 public:
 	Benchmark();
 	virtual ~Benchmark();
 
-	TruthTable *table;
-	std::vector<std::vector<int>>* operands;
-	std::vector<std::vector<int>>* result;
-
-	std::vector<std::string>* inputNames;
-	std::vector<std::string>* outputNames;
-
-	int inputs;
-	int outputs;
-	int bitLength;
-
 	// Function for the construction of the truth table
 	// of the respective function.
 	virtual void build() = 0;
-
-	virtual void generateInputNames();
-	virtual void generateOutputNames();
-
-	TruthTable* getTable();
+	std::shared_ptr<TruthTable> getTable();
 
 };
 

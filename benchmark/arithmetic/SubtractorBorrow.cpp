@@ -14,16 +14,14 @@ SubtractorBorrow::SubtractorBorrow(ArithmeticFunction *p_function,
 		throw std::invalid_argument("SUBB function is required by this class!");
 	}
 
-	inputs = bitLength * 2 + 1;
-	outputs = bitLength + 1;
+	numInputs = bitLength * 2 + 1;
+	numOutputs = bitLength + 1;
 
 	generateInputNames();
 	generateOutputNames();
 
-	std::vector<int> *separators = new std::vector<int> { };
-
-	table = new TruthTable(inputs, outputs, inputNames, outputNames,
-			separators);
+	table = std::make_shared<TruthTable>(numInputs, numOutputs, inputNames, outputNames,
+				separators);
 }
 
 void SubtractorBorrow::build() {

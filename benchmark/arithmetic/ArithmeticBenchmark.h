@@ -14,7 +14,6 @@
 class ArithmeticBenchmark : public Benchmark {
 public:
 	ArithmeticBenchmark(ArithmeticFunction *p_function, int p_bit_length);
-	ArithmeticBenchmark(int p_bit_length);
 	virtual ~ArithmeticBenchmark();
 
 protected:

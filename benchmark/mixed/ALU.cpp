@@ -37,10 +37,8 @@ ALU::ALU(std::vector<Function*> *p_functions, int p_bit_length) {
 
 	opcodeBits = ceil(log2(numFunctions));
 
-	inputs = 2 * bitLength + opcodeBits;
-	outputs = bitLength + 1;
-
-	std::vector<int> *separators = new std::vector<int>();
+	numInputs = 2 * bitLength + opcodeBits;
+	numOutputs = bitLength + 1;
 
 	int sep1 = opcodeBits - 1;
 	int sep2 = opcodeBits + bitLength - 1;
@@ -53,8 +51,8 @@ ALU::ALU(std::vector<Function*> *p_functions, int p_bit_length) {
 	generateInputNames();
 	generateOutputNames();
 
-	table = new TruthTable(inputs, outputs, inputNames, outputNames,
-			separators);
+	table = std::make_shared<TruthTable>(numInputs, numOutputs, inputNames, outputNames,
+				separators);
 
 	int maxFunctions = std::pow(2.0, opcodeBits);
 

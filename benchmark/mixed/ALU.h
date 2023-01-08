@@ -21,15 +21,15 @@
 #include "../../function/Function.h"
 
 class ALU : public Benchmark{
-public:
-	ALU(std::vector<Function*>* p_functions, int p_bit_length);
-	virtual ~ALU();
-
+private:
 	std::vector<Function*>* functions;
 
 	int chunkSize;
 	int opcodeBits;
 	int numFunctions;
+public:
+	ALU(std::vector<Function*>* p_functions, int p_bit_length);
+	virtual ~ALU();
 
 	void generateInputNames();
 	void generateOutputNames();

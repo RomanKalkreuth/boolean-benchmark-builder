@@ -15,16 +15,14 @@ AdderSubtractor::AdderSubtractor(ArithmeticFunction *p_function,
 		int p_bit_length) :
 		ArithmeticBenchmark(p_function, p_bit_length) {
 
-	inputs = bitLength * 2 + 1;
-	outputs = bitLength + 1;
+	numInputs = bitLength * 2 + 1;
+	numOutputs = bitLength + 1;
 
 	generateInputNames();
 	generateOutputNames();
 
-	std::vector<int> *separators = new std::vector<int>{ };
-
-	table = new TruthTable(inputs, outputs, inputNames, outputNames,
-			separators);
+	table = std::make_shared<TruthTable>(numInputs, numOutputs, inputNames, outputNames,
+				separators);
 }
 
 void AdderSubtractor::build() {

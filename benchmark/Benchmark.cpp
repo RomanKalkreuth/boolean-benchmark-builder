@@ -13,17 +13,16 @@ Benchmark::Benchmark() {
 	operands = new std::vector<std::vector<int>>();
 	inputNames = new std::vector<std::string>();
 	outputNames = new std::vector<std::string>();
-
+	separators = std::make_shared<std::vector<int>>();
 }
 
 Benchmark::~Benchmark() {
-	delete table;
 	delete operands;
 	delete inputNames;
 	delete outputNames;
 }
 
-TruthTable* Benchmark::getTable() {
+std::shared_ptr<TruthTable> Benchmark::getTable() {
 	return table;
 }
 

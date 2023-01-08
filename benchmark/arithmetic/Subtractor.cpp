@@ -16,16 +16,14 @@ ArithmeticBenchmark(p_function, p_bit_length) {
 		throw std::invalid_argument("SUB function is required by this class!");
 	}
 
-	inputs = bitLength * 2;
-	outputs = bitLength + 1;
+	numInputs = bitLength * 2;
+	numOutputs = bitLength + 1;
 
 	generateInputNames();
 	generateOutputNames();
 
-	std::vector<int> *separators = new std::vector<int> { bitLength - 1  };
-
-	table = new TruthTable(inputs, outputs, inputNames, outputNames,
-			separators);
+	table = std::make_shared<TruthTable>(numInputs, numOutputs, inputNames, outputNames,
+				separators);
 
 }
 

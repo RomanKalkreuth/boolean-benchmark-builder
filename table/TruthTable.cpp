@@ -42,9 +42,7 @@ TruthTable::~TruthTable() {
 	delete table;
 	delete inputNames;
 	delete outputNames;
-	delete separators;
 }
-
 
 /**
  * Constructor that creates a dummy table based on the
@@ -55,7 +53,7 @@ TruthTable::~TruthTable() {
 TruthTable::TruthTable(int p_inputs, int p_outputs,
 		std::vector<std::string> *p_input_names,
 		std::vector<std::string> *p_output_names,
-		std::vector<int> *p_separators) :
+		std::shared_ptr<std::vector<int>> p_separators) :
 		TruthTable(p_inputs, p_outputs) {
 
 	if (p_input_names != nullptr) {
@@ -88,7 +86,6 @@ TruthTable::TruthTable(int p_bits) {
 	table = new std::vector<std::vector<int> >(rows, std::vector<int>(cols, 0));
 	init(rows, cols, table);
 }
-
 
 /**
  * Initializes the values only for the inputs of the table
@@ -166,7 +163,6 @@ void TruthTable::print() {
 		std::cout << std::endl;
 	}
 }
-
 
 /**
  * Print only the header
@@ -292,8 +288,6 @@ void TruthTable::trim(int row) {
 	rows = table->size();
 }
 
-
-
 /*
  * Getter and setter for elements of the table.
  */
@@ -301,11 +295,9 @@ int TruthTable::at(int i, int j) const {
 	return (*table)[i][j];
 }
 
-
 void TruthTable::set(int i, int j, int val) {
 	(*table)[i][j] = val;
 }
-
 
 /**
  * Getter and setter for attributes of the class

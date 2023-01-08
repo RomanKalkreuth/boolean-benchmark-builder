@@ -16,15 +16,13 @@ AdderCarry::AdderCarry(ArithmeticFunction *p_function, int p_bit_length) :
 		throw std::invalid_argument("ADDC function is required by this class!");
 	}
 
-	inputs = bitLength * 2 + 1;
-	outputs = bitLength + 1;
+	numInputs = bitLength * 2 + 1;
+	numOutputs = bitLength + 1;
 
 	generateInputNames();
 	generateOutputNames();
 
-	std::vector<int> *separators = new std::vector<int> { };
-
-	table = new TruthTable(inputs, outputs, inputNames, outputNames,
+	table = std::make_shared<TruthTable>(numInputs, numOutputs, inputNames, outputNames,
 			separators);
 }
 
