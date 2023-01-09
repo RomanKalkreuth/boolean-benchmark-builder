@@ -90,20 +90,6 @@ int main() {
 	//table->printHeader();
 	//table->printHumanReadable();
 
-	std::vector<int> *bin = new std::vector<int> { 0, 1, 0, 1, 0, 1 };
-	for (auto it = bin->rbegin(); it != bin->rend(); ++it)
-		std::cout << *it;
-
-	std::cout << std::endl;
-
-	int dim = bin->size();
-	std::move(bin->begin() + 1, bin->begin() + dim, bin->begin());
-	bin->at(dim-1) = 0;
-
-	for (auto it = bin->rbegin(); it != bin->rend(); ++it)
-		std::cout << *it;
-
-	std::cout << std::endl;
 
 	for (Function *f : *functions) {
 		delete f;
