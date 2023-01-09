@@ -9,12 +9,6 @@
 
 #include "AND.h"
 
-AND::AND() {
-}
-
-AND::~AND() {
-
-}
 
 int AND::execute(int* ops) {
 	int result = 0;

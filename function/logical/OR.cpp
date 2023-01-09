@@ -9,13 +9,6 @@
 
 #include "OR.h"
 
-OR::OR() {
-}
-
-OR::~OR() {
-
-}
-
 int OR::execute(int* ops) {
 	int result = 0;
 	result = ops[0] | ops[1];

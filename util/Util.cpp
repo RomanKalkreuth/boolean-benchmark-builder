@@ -31,13 +31,13 @@ int Util::binToInt(std::vector<int> &bin) {
 	return dec;
 }
 
-long Util::binToLong(std::vector<int> *bin) {
+long Util::binToLong(std::vector<int> &bin) {
 	long dec = 0;
 	int val = 0;
-	int size = bin->size();
+	int size = bin.size();
 
 	for (int i = 0; i < size; i++) {
-		val = bin->at(i);
+		val = bin.at(i);
 		dec += (long) val * std::pow(2, i);
 	}
 	return dec;
@@ -53,7 +53,7 @@ std::vector<int>* Util::intToBin(int dec) {
 		bin->push_back(val);
 		dec /= 2;
 	}
-	std::reverse(bin->begin(), bin->end());
+	//std::reverse(bin->begin(), bin->end());
 	return bin;
 }
 

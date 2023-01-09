@@ -14,10 +14,14 @@
 #include "../Function.h"
 
 class LogicalFunction: public Function  {
+protected:
+	int arity;
 public:
-	LogicalFunction();
-	virtual ~LogicalFunction();
+	LogicalFunction() = default;
+	virtual ~LogicalFunction() = default;
 	virtual int execute(int* ops) = 0;
+	//virtual int validate() = 0;
+	virtual std::vector<std::vector<int>>* execute(std::vector<std::vector<int>> *ops) = 0;
 };
 
 #endif /* FUNCTION_LOGICAL_LOGICALFUNCTION_H_ */

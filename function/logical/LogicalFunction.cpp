@@ -9,11 +9,3 @@
 
 #include "LogicalFunction.h"
 
-LogicalFunction::LogicalFunction() {
-
-}
-
-LogicalFunction::~LogicalFunction() {
-
-}
-

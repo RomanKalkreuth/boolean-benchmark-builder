@@ -15,10 +15,10 @@
 
 class AND: public LogicalFunction {
 public:
-	AND();
-	virtual ~AND();
-	int execute(int *ops);
-	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>>* ops);
+	AND() = default;
+	virtual ~AND() = default;
+	int execute(int *ops) override;
+	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>>* ops) override;
 };
 
 #endif /* FUNCTION_AND_H_ */

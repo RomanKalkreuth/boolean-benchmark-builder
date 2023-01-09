@@ -14,10 +14,10 @@
 
 class XOR: public LogicalFunction {
 public:
-	XOR();
-	virtual ~XOR();
-	int execute(int *ops);
-	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>>* ops);
+	XOR() = default;
+	virtual ~XOR() = default;
+	int execute(int *ops) override;
+	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>>* ops) override;
 };
 
 #endif /* FUNCTION_XOR_H_ */

@@ -23,8 +23,7 @@
 #include "benchmark/arithmetic/AdderSubtractor.h"
 
 #include "benchmark/logical/combinational/Demultiplexer.h"
-#include "benchmark/logical/comparative/Comparator.h"
-
+#include "benchmark/logical/comparative/IdentityComparator.h"
 #include "function/Function.h"
 
 #include "function/logical/AND.h"
@@ -40,7 +39,6 @@
 
 #include "util/Util.h"
 
-
 int main() {
 
 	SUB *funcSub = new SUB();
@@ -52,8 +50,7 @@ int main() {
 	OR *funcOr = new OR();
 	XOR *funcXor = new XOR();
 
-
-	std::vector<Function*>* functions = new std::vector<Function*>();
+	std::vector<Function*> *functions = new std::vector<Function*>();
 
 	functions->push_back(funcAnd);
 	functions->push_back(funcOr);
@@ -61,34 +58,54 @@ int main() {
 	functions->push_back(funcAdd);
 	functions->push_back(funcSub);
 
-	std::unique_ptr<Adder> adder = std::make_unique<Adder>(funcAdd, 2);
+	std::unique_ptr<Adder> adder = std::make_unique < Adder > (funcAdd, 2);
 	adder->build();
 
-	std::unique_ptr<AdderCarry> adderCarry = std::make_unique<AdderCarry>(funcAddc, 2);
+	std::unique_ptr<AdderCarry> adderCarry = std::make_unique < AdderCarry
+			> (funcAddc, 2);
 	adderCarry->build();
 
-	std::unique_ptr<Subtractor> subtractor = std::make_unique<Subtractor>(funcSub, 2);
+	std::unique_ptr<Subtractor> subtractor = std::make_unique < Subtractor
+			> (funcSub, 2);
 	subtractor->build();
 
-	std::unique_ptr<SubtractorBorrow> subtractorBorrow = std::make_unique<SubtractorBorrow>(funcSubb, 4);
+	std::unique_ptr<SubtractorBorrow> subtractorBorrow = std::make_unique
+			< SubtractorBorrow > (funcSubb, 4);
 	subtractorBorrow->build();
 
-	std::unique_ptr<AdderSubtractor> addSub = std::make_unique<AdderSubtractor>(funcAddc, 4);
+	std::unique_ptr<AdderSubtractor> addSub = std::make_unique < AdderSubtractor
+			> (funcAddc, 4);
 	addSub->build();
 
-	std::unique_ptr<Demultiplexer> demux = std::make_unique<Demultiplexer>(4);
+	std::unique_ptr<Demultiplexer> demux = std::make_unique < Demultiplexer
+			> (4);
 	demux->build();
 
-	std::unique_ptr<Comparator> comparator = std::make_unique<Comparator>(3);
+	std::unique_ptr<IdentityComparator> comparator = std::make_unique < IdentityComparator
+			> (3);
 	comparator->build();
 
 	std::shared_ptr<TruthTable> table = comparator->getTable();
 
 	//table->printHeader();
-	table->printHumanReadable();
+	//table->printHumanReadable();
 
+	std::vector<int> *bin = new std::vector<int> { 0, 1, 0, 1, 0, 1 };
+	for (auto it = bin->rbegin(); it != bin->rend(); ++it)
+		std::cout << *it;
 
-	for(Function* f : *functions) {
+	std::cout << std::endl;
+
+	int dim = bin->size();
+	std::move(bin->begin() + 1, bin->begin() + dim, bin->begin());
+	bin->at(dim-1) = 0;
+
+	for (auto it = bin->rbegin(); it != bin->rend(); ++it)
+		std::cout << *it;
+
+	std::cout << std::endl;
+
+	for (Function *f : *functions) {
 		delete f;
 	}
 

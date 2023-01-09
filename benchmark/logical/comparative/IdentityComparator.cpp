@@ -5,9 +5,9 @@
  *      Author: roman
  */
 
-#include "Comparator.h"
+#include "IdentityComparator.h"
 
-Comparator::Comparator(int bitLength) :
+IdentityComparator::IdentityComparator(int bitLength) :
 		LogicalBenchmark(bitLength) {
 	numInputs = bitLength;
 
@@ -25,7 +25,7 @@ Comparator::Comparator(int bitLength) :
 
 }
 
-void Comparator::build() {
+void IdentityComparator::build() {
 
 	int rows = table->getRows();
 
@@ -66,11 +66,11 @@ void Comparator::build() {
 
 }
 
-void Comparator::generateOutputNames() {
+void IdentityComparator::generateOutputNames() {
 
 }
 
-void Comparator::generateInputNames() {
+void IdentityComparator::generateInputNames() {
 
 }
 

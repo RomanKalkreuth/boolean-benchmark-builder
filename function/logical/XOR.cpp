@@ -9,13 +9,6 @@
 
 #include "XOR.h"
 
-XOR::XOR() {
-}
-
-XOR::~XOR() {
-
-}
-
 int XOR::execute(int *ops) {
 	int result = 0;
 	result = ops[0] ^ ops[1];
