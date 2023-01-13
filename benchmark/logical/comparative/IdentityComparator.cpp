@@ -66,11 +66,4 @@ void IdentityComparator::build() {
 
 }
 
-void IdentityComparator::generateOutputNames() {
-
-}
-
-void IdentityComparator::generateInputNames() {
-
-}
 

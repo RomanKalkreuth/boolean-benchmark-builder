@@ -22,6 +22,14 @@ Benchmark::~Benchmark() {
 	delete outputNames;
 }
 
+int Benchmark::getNumOutputs() const {
+	return numOutputs;
+}
+
+int Benchmark::getNumInputs() const {
+	return numInputs;
+}
+
 std::shared_ptr<TruthTable> Benchmark::getTable() {
 	return table;
 }

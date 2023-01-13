@@ -33,7 +33,11 @@ TruthTable::TruthTable(int p_inputs, int p_outputs) {
 
 	table = new std::vector<std::vector<int> >(rows, std::vector<int>(cols, 0));
 
-	chunkSize = 32;
+	chunkSize = rows;
+
+	if(chunkSize > MAX_CHUNK_SIZE) {
+		chunkSize = MAX_CHUNK_SIZE;
+	}
 
 	init(rows, cols, outputs, table);
 }
@@ -294,6 +298,7 @@ void TruthTable::trim(int row) {
 int TruthTable::at(int i, int j) const {
 	return (*table)[i][j];
 }
+
 
 void TruthTable::set(int i, int j, int val) {
 	(*table)[i][j] = val;

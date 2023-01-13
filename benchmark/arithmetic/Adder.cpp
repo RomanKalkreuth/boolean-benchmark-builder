@@ -36,12 +36,11 @@ void Adder::build() {
 
 	int s = 0;
 	int rows = table->getRows();
-	int cols = table->getCols();
 
-	int coutVal = 0;
-	int coutPos = 2 * bitLength;
+	int coutValue = 0;
+	int coutIndex = 2 * bitLength;
 
-	int sumPos = coutPos + 1;
+	int sumPos = coutIndex + 1;
 
 	for (int i = 0; i < rows; i++) {
 
@@ -72,8 +71,8 @@ void Adder::build() {
 
 		std::reverse(sum->begin(), sum->end());
 
-		coutVal = carry->at(0);
-		table->set(i, coutPos, coutVal);
+		coutValue = carry->at(0);
+		table->set(i, coutIndex, coutValue);
 
 		for (int j = 0; j < bitLength; j++) {
 			s = sum->at(j);

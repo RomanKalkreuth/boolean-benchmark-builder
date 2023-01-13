@@ -16,7 +16,7 @@ class DIV : public ArithmeticFunction  {
 public:
 	DIV();
 	virtual ~DIV();
-	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>>* ops);
+	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>> *ops) override;
 };
 
 #endif /* FUNCTION_ARITHMETIC_DIV_H_ */

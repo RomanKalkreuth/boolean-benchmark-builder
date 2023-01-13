@@ -24,6 +24,8 @@
 
 #include "benchmark/logical/combinational/Demultiplexer.h"
 #include "benchmark/logical/comparative/IdentityComparator.h"
+#include "benchmark/logical/comparative/MagnitudeComparator.h"
+
 #include "function/Function.h"
 
 #include "function/logical/AND.h"
@@ -36,6 +38,8 @@
 #include "function/arithmetic/SUBB.h"
 
 #include "table/TruthTable.h"
+
+#include "export/Exporter.h"
 
 #include "util/Util.h"
 
@@ -58,38 +62,45 @@ int main() {
 	functions->push_back(funcAdd);
 	functions->push_back(funcSub);
 
-	std::unique_ptr<Adder> adder = std::make_unique < Adder > (funcAdd, 2);
+	std::shared_ptr<Adder> adder = std::make_shared < Adder > (funcAdd, 2);
 	adder->build();
 
-	std::unique_ptr<AdderCarry> adderCarry = std::make_unique < AdderCarry
+	std::shared_ptr<AdderCarry> adderCarry = std::make_shared < AdderCarry
 			> (funcAddc, 2);
 	adderCarry->build();
 
-	std::unique_ptr<Subtractor> subtractor = std::make_unique < Subtractor
+	std::shared_ptr<Subtractor> subtractor = std::make_shared < Subtractor
 			> (funcSub, 2);
 	subtractor->build();
 
-	std::unique_ptr<SubtractorBorrow> subtractorBorrow = std::make_unique
+	std::shared_ptr<SubtractorBorrow> subtractorBorrow = std::make_shared
 			< SubtractorBorrow > (funcSubb, 4);
 	subtractorBorrow->build();
 
-	std::unique_ptr<AdderSubtractor> addSub = std::make_unique < AdderSubtractor
+	std::shared_ptr<AdderSubtractor> addSub = std::make_shared < AdderSubtractor
 			> (funcAddc, 4);
 	addSub->build();
 
-	std::unique_ptr<Demultiplexer> demux = std::make_unique < Demultiplexer
+	std::shared_ptr<Demultiplexer> demux = std::make_shared < Demultiplexer
 			> (4);
 	demux->build();
 
-	std::unique_ptr<IdentityComparator> comparator = std::make_unique < IdentityComparator
-			> (3);
-	comparator->build();
+	std::shared_ptr<IdentityComparator> identityComparator = std::make_shared
+			< IdentityComparator > (3);
+	identityComparator->build();
 
-	std::shared_ptr<TruthTable> table = comparator->getTable();
+	std::shared_ptr<MagnitudeComparator> magnitudeComparator = std::make_shared
+			< MagnitudeComparator > (2);
+	magnitudeComparator->build();
+
+	std::shared_ptr<TruthTable> table = magnitudeComparator->getTable();
 
 	//table->printHeader();
-	//table->printHumanReadable();
+	table->printHumanReadable();
 
+	Exporter<long> exporter;
+
+	exporter.to_plu_file(magnitudeComparator, "mcomp");
 
 	for (Function *f : *functions) {
 		delete f;

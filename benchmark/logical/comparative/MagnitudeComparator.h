@@ -12,6 +12,8 @@
 #include "../../../util/Util.h"
 
 class MagnitudeComparator : public LogicalBenchmark {
+private:
+ 	int numComparisons;
 public:
 	MagnitudeComparator(int bitLength);
 	virtual ~MagnitudeComparator() = default;

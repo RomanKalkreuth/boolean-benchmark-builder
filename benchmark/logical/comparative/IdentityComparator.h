@@ -18,8 +18,6 @@ public:
 	IdentityComparator(int bitLength);
 	virtual ~IdentityComparator() = default;
 	void build() override;
-	void generateInputNames() override;
-	void generateOutputNames() override;
 };
 
 #endif /* BENCHMARK_LOGICAL_COMPARATIVE_IDENTITYCOMPARATOR_H_ */

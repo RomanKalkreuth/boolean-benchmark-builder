@@ -16,7 +16,7 @@ class SUB: public ArithmeticFunction  {
 public:
 	SUB() = default;
 	virtual ~SUB() = default;
-	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>> *ops);
+	std::vector<std::vector<int>>* execute(std::vector<std::vector<int>> *ops) override;
 	std::vector<std::vector<int>>* execute(std::vector<int> *bin1,
 					std::vector<int> *bin2);
 };

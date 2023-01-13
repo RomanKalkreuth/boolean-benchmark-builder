@@ -43,7 +43,8 @@ public:
 	// of the respective function.
 	virtual void build() = 0;
 	std::shared_ptr<TruthTable> getTable();
-
+	int getNumInputs() const;
+	int getNumOutputs() const;
 };
 
 #endif /* BENCHMARK_BENCHMARK_H_ */

@@ -33,6 +33,8 @@ private:
 	int rows;
 	int chunkSize;
 
+	const int MAX_CHUNK_SIZE = 32;
+
 	std::shared_ptr<std::vector<int>> separators;
 	std::vector<std::vector<int> > *table;
 	std::vector<std::string>* inputNames;
