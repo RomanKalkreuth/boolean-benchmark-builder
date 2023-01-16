@@ -22,7 +22,7 @@
 template<class T>
 class Exporter {
 public:
-	Exporter();
+	Exporter() = default;
 
 	int chunkSize;
 	const int MAX_CHUNK_SIZE = 32;
@@ -41,13 +41,9 @@ public:
 };
 
 template<class T>
-Exporter<T>::Exporter() {
-
-}
-
-template<class T>
 void Exporter<T>::to_plu_file(std::shared_ptr<Benchmark> benchmark,
 		std::string benchmark_name) {
+
 
 	std::shared_ptr<TruthTable> truthTable = benchmark->getTable();
 

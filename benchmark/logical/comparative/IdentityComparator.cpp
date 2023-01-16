@@ -60,7 +60,7 @@ void IdentityComparator::build() {
 
 				table->set(z, currentComparisonIndex + caseOffset, 1);
 			}
-			comparisonOffset = j * this->numComparisons;
+			comparisonOffset += this->numComparisons;
 		}
 	}
 

@@ -82,25 +82,25 @@ int main() {
 	addSub->build();
 
 	std::shared_ptr<Demultiplexer> demux = std::make_shared < Demultiplexer
-			> (4);
+			> (64);
 	demux->build();
 
 	std::shared_ptr<IdentityComparator> identityComparator = std::make_shared
-			< IdentityComparator > (3);
+			< IdentityComparator > (6);
 	identityComparator->build();
 
 	std::shared_ptr<MagnitudeComparator> magnitudeComparator = std::make_shared
-			< MagnitudeComparator > (2);
+			< MagnitudeComparator > (4);
 	magnitudeComparator->build();
 
-	std::shared_ptr<TruthTable> table = magnitudeComparator->getTable();
+	std::shared_ptr<TruthTable> table =  demux->getTable();
 
 	//table->printHeader();
 	table->printHumanReadable();
 
 	Exporter<long> exporter;
 
-	exporter.to_plu_file(magnitudeComparator, "mcomp");
+	exporter.to_plu_file(demux, "mcomp");
 
 	for (Function *f : *functions) {
 		delete f;
