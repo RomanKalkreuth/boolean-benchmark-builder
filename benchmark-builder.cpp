@@ -15,31 +15,27 @@
 #include <string>
 #include <memory>
 
-#include "benchmark/mixed/ALU.h"
-#include "benchmark/arithmetic/Adder.h"
-#include "benchmark/arithmetic/AdderCarry.h"
-#include "benchmark/arithmetic/Subtractor.h"
-#include "benchmark/arithmetic/SubtractorBorrow.h"
-#include "benchmark/arithmetic/AdderSubtractor.h"
-
-#include "benchmark/logical/combinational/Demultiplexer.h"
-#include "benchmark/logical/comparative/IdentityComparator.h"
-#include "benchmark/logical/comparative/MagnitudeComparator.h"
-
-#include "function/Function.h"
-
+#include "benchmarks/arithmetic/Adder.h"
+#include "benchmarks/arithmetic/AdderCarry.h"
+#include "benchmarks/arithmetic/AdderSubtractor.h"
+#include "benchmarks/arithmetic/Subtractor.h"
+#include "benchmarks/arithmetic/SubtractorBorrow.h"
+#include "benchmarks/logical/combinational/Demultiplexer.h"
+#include "benchmarks/logical/comparative/IdentityComparator.h"
+#include "benchmarks/logical/comparative/MagnitudeComparator.h"
+#include "benchmarks/mixed/ALU.h"
 #include "function/logical/AND.h"
-#include "function/logical/OR.h"
-#include "function/logical/XOR.h"
-
-#include "function/arithmetic/ADDC.h"
-#include "function/arithmetic/ADD.h"
-#include "function/arithmetic/SUB.h"
-#include "function/arithmetic/SUBB.h"
-
 #include "table/TruthTable.h"
 
 #include "export/Exporter.h"
+#include "functions/arithmetic/ADD.h"
+#include "functions/arithmetic/ADDC.h"
+#include "functions/arithmetic/SUB.h"
+#include "functions/arithmetic/SUBB.h"
+#include "functions/Function.h"
+#include "functions/logical/AND.h"
+#include "functions/logical/OR.h"
+#include "functions/logical/XOR.h"
 
 #include "util/Util.h"
 
@@ -62,45 +58,45 @@ int main() {
 	functions->push_back(funcAdd);
 	functions->push_back(funcSub);
 
-	std::shared_ptr<Adder> adder = std::make_shared < Adder > (funcAdd, 2);
-	adder->build();
+	std::shared_ptr<Adder> add = std::make_shared < Adder > (funcAdd, 2);
+	add->build();
 
-	std::shared_ptr<AdderCarry> adderCarry = std::make_shared < AdderCarry
+	std::shared_ptr<AdderCarry> addc = std::make_shared < AdderCarry
 			> (funcAddc, 2);
-	adderCarry->build();
+	addc->build();
 
-	std::shared_ptr<Subtractor> subtractor = std::make_shared < Subtractor
+	std::shared_ptr<Subtractor> sub = std::make_shared < Subtractor
 			> (funcSub, 2);
-	subtractor->build();
+	sub->build();
 
-	std::shared_ptr<SubtractorBorrow> subtractorBorrow = std::make_shared
+	std::shared_ptr<SubtractorBorrow> subb = std::make_shared
 			< SubtractorBorrow > (funcSubb, 4);
-	subtractorBorrow->build();
+	subb->build();
 
-	std::shared_ptr<AdderSubtractor> addSub = std::make_shared < AdderSubtractor
+	std::shared_ptr<AdderSubtractor> addsub = std::make_shared < AdderSubtractor
 			> (funcAddc, 4);
-	addSub->build();
+	addsub->build();
 
 	std::shared_ptr<Demultiplexer> demux = std::make_shared < Demultiplexer
-			> (64);
+			> (8);
 	demux->build();
 
-	std::shared_ptr<IdentityComparator> identityComparator = std::make_shared
-			< IdentityComparator > (6);
-	identityComparator->build();
+	std::shared_ptr<IdentityComparator> icomp = std::make_shared
+			< IdentityComparator > (4);
+	icomp->build();
 
-	std::shared_ptr<MagnitudeComparator> magnitudeComparator = std::make_shared
-			< MagnitudeComparator > (4);
-	magnitudeComparator->build();
+	std::shared_ptr<MagnitudeComparator> mcomp = std::make_shared
+			< MagnitudeComparator > (6);
+	mcomp->build();
 
-	std::shared_ptr<TruthTable> table =  demux->getTable();
+	std::shared_ptr<TruthTable> table =  addsub->getTable();
 
-	//table->printHeader();
+	table->printHeader();
 	table->printHumanReadable();
 
 	Exporter<long> exporter;
 
-	exporter.to_plu_file(demux, "mcomp");
+	//exporter.to_plu_file(mcomp, "icomp4x1");
 
 	for (Function *f : *functions) {
 		delete f;
