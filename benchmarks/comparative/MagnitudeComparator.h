@@ -5,10 +5,10 @@
  *      Author: roman
  */
 
-#ifndef BENCHMARK_LOGICAL_COMPARATIVE_MAGNITUDECOMPARATOR_H_
-#define BENCHMARK_LOGICAL_COMPARATIVE_MAGNITUDECOMPARATOR_H_
+#ifndef BENCHMARKS_LOGICAL_COMPARATIVE_MAGNITUDECOMPARATOR_H_
+#define BENCHMARKS_LOGICAL_COMPARATIVE_MAGNITUDECOMPARATOR_H_
 
-#include "../LogicalBenchmark.h"
+#include "../../../benchmarks/logical/LogicalBenchmark.h"
 #include "../../../util/Util.h"
 
 class MagnitudeComparator : public LogicalBenchmark {
@@ -22,4 +22,4 @@ public:
 	void generateOutputNames() override;
 };
 
-#endif /* BENCHMARK_LOGICAL_COMPARATIVE_MAGNITUDECOMPARATOR_H_ */
+#endif /* BENCHMARKS_LOGICAL_COMPARATIVE_MAGNITUDECOMPARATOR_H_ */
