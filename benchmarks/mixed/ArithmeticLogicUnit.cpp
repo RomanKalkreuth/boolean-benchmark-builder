@@ -7,9 +7,9 @@
  *         	https://twitter.com/RomanKalkreuth
  */
 
-#include "../../benchmarks/mixed/ALU.h"
+#include "ArithmeticLogicUnit.h"
 
-ALU::ALU(std::vector<Function*> *p_functions, int p_bit_length) {
+ArithmeticLogicUnit::ArithmeticLogicUnit(std::vector<Function*> *p_functions, int p_bit_length) {
 	if (p_functions != nullptr) {
 		functions = p_functions;
 	} else {
@@ -70,7 +70,7 @@ ALU::ALU(std::vector<Function*> *p_functions, int p_bit_length) {
 
 }
 
-ALU::~ALU() {
+ArithmeticLogicUnit::~ArithmeticLogicUnit() {
 
 	for (std::vector<Function*>::iterator it = functions->begin();
 			it != functions->end(); ++it) {
@@ -82,7 +82,7 @@ ALU::~ALU() {
 /**
  *
  */
-void ALU::build() {
+void ArithmeticLogicUnit::build() {
 
 	int rows = table->getRows();
 
@@ -149,7 +149,7 @@ void ALU::build() {
 	}
 }
 
-void ALU::generateOutputNames() {
+void ArithmeticLogicUnit::generateOutputNames() {
 
 	outputNames->push_back("S ");
 
@@ -158,7 +158,7 @@ void ALU::generateOutputNames() {
 	}
 }
 
-void ALU::generateInputNames() {
+void ArithmeticLogicUnit::generateInputNames() {
 
 	for (int i = opcodeBits - 1; i >= 0; i--) {
 		inputNames->push_back("M" + std::to_string(i));

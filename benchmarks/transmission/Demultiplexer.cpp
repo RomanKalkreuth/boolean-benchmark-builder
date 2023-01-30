@@ -5,7 +5,7 @@
  *      Author: roman
  */
 
-#include "../../../benchmarks/logical/combinational/Demultiplexer.h"
+#include "Demultiplexer.h"
 
 Demultiplexer::Demultiplexer(int p_bit_legth) : LogicalBenchmark(p_bit_legth) {
 

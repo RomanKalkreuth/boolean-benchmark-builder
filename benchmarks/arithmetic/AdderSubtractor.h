@@ -12,8 +12,8 @@
 
 #include "../../benchmarks/arithmetic/ArithmeticBenchmark.h"
 #include "../../benchmarks/Benchmark.h"
-#include "../../function/arithmetic/ArithmeticFunction.h"
-#include "../../function/arithmetic/ADD.h"
+#include "../../functions/arithmetic/ArithmeticFunction.h"
+#include "../../functions/arithmetic/ADD.h"
 #include "../../functions/arithmetic/SUB.h"
 
 class AdderSubtractor : public ArithmeticBenchmark {

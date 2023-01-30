@@ -9,7 +9,7 @@
 #define BENCHMARKS_ARITHMETIC_SUBTRACTORBORROW_H_
 
 #include "../../benchmarks/arithmetic/ArithmeticBenchmark.h"
-#include "../../function/arithmetic/ArithmeticFunction.h"
+#include "../../functions/arithmetic/ArithmeticFunction.h"
 #include "../../functions/arithmetic/SUBB.h"
 
 class SubtractorBorrow : public ArithmeticBenchmark {

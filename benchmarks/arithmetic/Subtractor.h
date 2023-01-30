@@ -11,8 +11,8 @@
 
 #include "../../benchmarks/arithmetic/ArithmeticBenchmark.h"
 #include "../../benchmarks/Benchmark.h"
-#include "../../function/arithmetic/ArithmeticFunction.h"
-#include "../../function/arithmetic/SUB.h"
+#include "../../functions/arithmetic/ArithmeticFunction.h"
+#include "../../functions/arithmetic/SUB.h"
 
 class Subtractor : public ArithmeticBenchmark {
 public:

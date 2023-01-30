@@ -18,9 +18,9 @@
 #include <algorithm>
 
 #include "../../benchmarks/Benchmark.h"
-#include "../../function/Function.h"
+#include "../../functions/Function.h"
 
-class ALU : public Benchmark{
+class ArithmeticLogicUnit : public Benchmark{
 private:
 	std::vector<Function*>* functions;
 
@@ -28,8 +28,8 @@ private:
 	int opcodeBits;
 	int numFunctions;
 public:
-	ALU(std::vector<Function*>* p_functions, int p_bit_length);
-	virtual ~ALU();
+	ArithmeticLogicUnit(std::vector<Function*>* p_functions, int p_bit_length);
+	virtual ~ArithmeticLogicUnit();
 
 	void generateInputNames();
 	void generateOutputNames();

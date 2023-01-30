@@ -11,7 +11,7 @@
 #define BENCHMARK_ADDER_H_
 
 #include "../../benchmarks/arithmetic/ArithmeticBenchmark.h"
-#include "../../function/arithmetic/ArithmeticFunction.h"
+#include "../../functions/arithmetic/ArithmeticFunction.h"
 #include "../../functions/arithmetic/ADD.h"
 #include "../Benchmark.h"
 

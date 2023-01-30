@@ -5,7 +5,7 @@
  *      Author: roman
  */
 
-#include "../../benchmarks/logical/LogicalBenchmark.h"
+#include "LogicalBenchmark.h"
 
 
 LogicalBenchmark::LogicalBenchmark(int p_bit_length) {

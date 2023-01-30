@@ -10,8 +10,8 @@
 
 #include <cmath>
 
-#include "LogicalBenchmark.h"
-#include "../../../util/Util.h"
+#include "../LogicalBenchmark.h"
+#include "../../util/Util.h"
 
 class Demultiplexer : public LogicalBenchmark{
 public:

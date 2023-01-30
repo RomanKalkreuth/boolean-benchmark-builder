@@ -20,11 +20,11 @@
 #include "benchmarks/arithmetic/AdderSubtractor.h"
 #include "benchmarks/arithmetic/Subtractor.h"
 #include "benchmarks/arithmetic/SubtractorBorrow.h"
-#include "benchmarks/logical/combinational/Demultiplexer.h"
-#include "benchmarks/logical/comparative/IdentityComparator.h"
-#include "benchmarks/logical/comparative/MagnitudeComparator.h"
-#include "benchmarks/mixed/ALU.h"
-#include "function/logical/AND.h"
+#include "benchmarks/transmission/Demultiplexer.h"
+#include "benchmarks/comparative/IdentityComparator.h"
+#include "benchmarks/comparative/MagnitudeComparator.h"
+#include "benchmarks/mixed/ArithmeticLogicUnit.h"
+#include "functions/logical/AND.h"
 #include "table/TruthTable.h"
 
 #include "export/Exporter.h"
@@ -86,17 +86,22 @@ int main() {
 	icomp->build();
 
 	std::shared_ptr<MagnitudeComparator> mcomp = std::make_shared
-			< MagnitudeComparator > (6);
+			< MagnitudeComparator > (5);
 	mcomp->build();
 
-	std::shared_ptr<TruthTable> table =  addsub->getTable();
 
-	table->printHeader();
+	std::shared_ptr<ArithmeticLogicUnit> alu = std::make_shared
+			< ArithmeticLogicUnit > (functions,4);
+	alu->build();
+
+	std::shared_ptr<TruthTable> table =  alu->getTable();
+
+	//table->printHeader();
 	table->printHumanReadable();
 
-	Exporter<long> exporter;
+	Exporter<long> exporter(32);
 
-	//exporter.to_plu_file(mcomp, "icomp4x1");
+	exporter.toPluFile(alu, "alu4");
 
 	for (Function *f : *functions) {
 		delete f;

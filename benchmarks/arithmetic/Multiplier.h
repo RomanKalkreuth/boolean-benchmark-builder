@@ -12,7 +12,7 @@
 
 #include "../../benchmarks/arithmetic/ArithmeticBenchmark.h"
 #include "../../benchmarks/Benchmark.h"
-#include "../../function/arithmetic/ArithmeticFunction.h"
+#include "../../functions/arithmetic/ArithmeticFunction.h"
 #include "../../functions/arithmetic/MUL.h"
 
 class Multiplier: public ArithmeticBenchmark {

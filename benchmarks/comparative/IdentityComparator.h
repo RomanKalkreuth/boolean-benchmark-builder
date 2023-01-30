@@ -9,7 +9,7 @@
 #define BENCHMARKS_LOGICAL_COMPARATIVE_IDENTITYCOMPARATOR_H_
 
 #include "..//LogicalBenchmark.h"
-#include "../../../util/Util.h"
+#include "../../util/Util.h"
 
 class IdentityComparator : public LogicalBenchmark {
 private:

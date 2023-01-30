@@ -17,15 +17,16 @@
 #include <exception>
 
 #include "../table/TruthTable.h"
-#include "../benchmark/Benchmark.h"
+#include "../benchmarks/Benchmark.h"
 
 template<class T>
 class Exporter {
 public:
 	Exporter() = default;
+	Exporter(int pMaxChunkSize);
 
 	int chunkSize;
-	const int MAX_CHUNK_SIZE = 32;
+	int maxChunkSize = 32;
 	const std::string BENCHMARK_DIR =
 			"/home/roman/git-eclipse/boolean-benchmark-builder/data/plu/";
 
@@ -34,14 +35,20 @@ public:
 	std::shared_ptr<std::vector<std::vector<T>>> compress(
 			std::shared_ptr<TruthTable> truthTable);
 
-	void to_plu_file(std::shared_ptr<Benchmark> benchmark,
+	void toPluFile(std::shared_ptr<Benchmark> benchmark,
 			std::string benchmark_name);
 
 	virtual ~Exporter() = default;
 };
 
 template<class T>
-void Exporter<T>::to_plu_file(std::shared_ptr<Benchmark> benchmark,
+Exporter<T>::Exporter(int pMaxChunkSize) {
+	maxChunkSize = pMaxChunkSize;
+}
+
+
+template<class T>
+void Exporter<T>::toPluFile(std::shared_ptr<Benchmark> benchmark,
 		std::string benchmark_name) {
 
 
@@ -77,6 +84,7 @@ void Exporter<T>::to_plu_file(std::shared_ptr<Benchmark> benchmark,
 			}
 			ofs << std::endl;
 		}
+		ofs << ".e";
 		ofs.close();
 	} else {
 		throw std::runtime_error("Could not open or create benchmark file!");
@@ -91,14 +99,14 @@ std::shared_ptr<std::vector<std::vector<T>>> Exporter<T>::compress(
 	int numRows = truthTable->getRows();
 	int numCols = truthTable->getCols();
 
-	if (numRows > MAX_CHUNK_SIZE) {
+	if (numRows > maxChunkSize) {
 
-		if ((numRows % MAX_CHUNK_SIZE) != 0) {
+		if ((numRows % maxChunkSize) != 0) {
 			throw new std::runtime_error("Number of rows does "
-					"not fit with max chunk size " + MAX_CHUNK_SIZE);
+					"not fit with max chunk size " + maxChunkSize);
 		}
 
-		chunkSize = MAX_CHUNK_SIZE;
+		chunkSize = maxChunkSize;
 		chunk_table = true;
 	} else {
 		chunkSize = numRows;
